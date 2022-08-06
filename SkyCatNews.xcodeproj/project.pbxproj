@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D628BD1289E752700C73357 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D628BD0289E752700C73357 /* PreferenceKeys.swift */; };
+		2D628BD3289E8DDC00C73357 /* SkyCatNewsUITestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D628BD2289E8DDC00C73357 /* SkyCatNewsUITestsExtensions.swift */; };
+		2D628BDA289EA95500C73357 /* sample_story1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D628BD8289EA95500C73357 /* sample_story1.json */; };
+		2D628BDB289EA95500C73357 /* sample_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D628BD9289EA95500C73357 /* sample_list.json */; };
 		2DB1411E289D90B800A32A66 /* SkyCatNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1411D289D90B800A32A66 /* SkyCatNewsApp.swift */; };
 		2DB14120289D90B800A32A66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1411F289D90B800A32A66 /* ContentView.swift */; };
 		2DB14122289D90B900A32A66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB14121289D90B900A32A66 /* Assets.xcassets */; };
@@ -16,7 +19,7 @@
 		2DB14139289D90B900A32A66 /* SkyCatNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB14138289D90B900A32A66 /* SkyCatNewsUITests.swift */; };
 		2DB1413B289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */; };
 		2DE6A83D289E64FA00123354 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A83C289E64FA00123354 /* NavigationBar.swift */; };
-		2DE6A840289E659300123354 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A83F289E659300123354 /* StringExtensions.swift */; };
+		2DE6A840289E659300123354 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A83F289E659300123354 /* Extensions.swift */; };
 		2DE6A843289E668900123354 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A842289E668900123354 /* AnimatableFontModifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		2D628BD0289E752700C73357 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
+		2D628BD2289E8DDC00C73357 /* SkyCatNewsUITestsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsUITestsExtensions.swift; sourceTree = "<group>"; };
+		2D628BD8289EA95500C73357 /* sample_story1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_story1.json; sourceTree = "<group>"; };
+		2D628BD9289EA95500C73357 /* sample_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_list.json; sourceTree = "<group>"; };
 		2DB1411A289D90B800A32A66 /* SkyCatNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyCatNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB1411D289D90B800A32A66 /* SkyCatNewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsApp.swift; sourceTree = "<group>"; };
 		2DB1411F289D90B800A32A66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +56,7 @@
 		2DB14138289D90B900A32A66 /* SkyCatNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsUITests.swift; sourceTree = "<group>"; };
 		2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2DE6A83C289E64FA00123354 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		2DE6A83F289E659300123354 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		2DE6A83F289E659300123354 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DE6A842289E668900123354 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D628BD7289EA92600C73357 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D628BD9289EA95500C73357 /* sample_list.json */,
+				2D628BD8289EA95500C73357 /* sample_story1.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2DB14111289D90B800A32A66 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +122,7 @@
 				2DB14147289E643D00A32A66 /* Views */,
 				2DE6A83E289E657500123354 /* Model */,
 				2DE6A841289E666400123354 /* Styles */,
+				2D628BD7289EA92600C73357 /* Resources */,
 				2DB14121289D90B900A32A66 /* Assets.xcassets */,
 				2DB14123289D90B900A32A66 /* Preview Content */,
 			);
@@ -134,6 +150,7 @@
 			children = (
 				2DB14138289D90B900A32A66 /* SkyCatNewsUITests.swift */,
 				2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */,
+				2D628BD2289E8DDC00C73357 /* SkyCatNewsUITestsExtensions.swift */,
 			);
 			path = SkyCatNewsUITests;
 			sourceTree = "<group>";
@@ -157,7 +174,7 @@
 		2DE6A83E289E657500123354 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2DE6A844289E68DF00123354 /* Extensions */,
+				2DE6A83F289E659300123354 /* Extensions.swift */,
 				2D628BD0289E752700C73357 /* PreferenceKeys.swift */,
 			);
 			path = Model;
@@ -169,14 +186,6 @@
 				2DE6A842289E668900123354 /* AnimatableFontModifier.swift */,
 			);
 			path = Styles;
-			sourceTree = "<group>";
-		};
-		2DE6A844289E68DF00123354 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2DE6A83F289E659300123354 /* StringExtensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +292,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D628BDA289EA95500C73357 /* sample_story1.json in Resources */,
+				2D628BDB289EA95500C73357 /* sample_list.json in Resources */,
 				2DB14125289D90B900A32A66 /* Preview Assets.xcassets in Resources */,
 				2DB14122289D90B900A32A66 /* Assets.xcassets in Resources */,
 			);
@@ -309,7 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DE6A840289E659300123354 /* StringExtensions.swift in Sources */,
+				2DE6A840289E659300123354 /* Extensions.swift in Sources */,
 				2DB14120289D90B800A32A66 /* ContentView.swift in Sources */,
 				2DB1411E289D90B800A32A66 /* SkyCatNewsApp.swift in Sources */,
 				2DE6A843289E668900123354 /* AnimatableFontModifier.swift in Sources */,
@@ -330,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D628BD3289E8DDC00C73357 /* SkyCatNewsUITestsExtensions.swift in Sources */,
 				2DB1413B289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift in Sources */,
 				2DB14139289D90B900A32A66 /* SkyCatNewsUITests.swift in Sources */,
 			);

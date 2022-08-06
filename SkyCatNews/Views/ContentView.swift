@@ -14,9 +14,13 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color(.background).ignoresSafeArea()
- 
+            
             content
-                .background(Image(.blob1).offset(x: -100, y: -400))
+                .background(
+                    Image(.blob1)
+                        .offset(x: -100, y: -400)
+                        .accessibility(hidden: true)
+                )
         }
     }
     
@@ -29,11 +33,15 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("Hello, world!")
+                
             }
         }
         .padding(.top, 60)
         .coordinateSpace(name: "scroll")
-        .overlay(NavigationBar(title: .skyTitle, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true)))
+        .overlay(
+            NavigationBar(title: .skyTitle, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
+                .accessibilityAddTraits(.isHeader)
+        )
     }
     
     /// Use `scrollDetection` to detect content scrolling. Store the value read by `GeometryReader` in a `ScrollPreferenceKey` and once this value changes, animate the `contentHasScrolled` state variable which will in turn animate our `NavigationBar`
