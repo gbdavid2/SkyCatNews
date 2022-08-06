@@ -11,32 +11,41 @@ struct NavigationBar: View {
     
     var title = "" 
     
-    /// Based on the behaviour of this variable we'll be able to add a navigation bar effect.
+    /// Based on the behaviour of this variable we'll be able to add a navigation bar effect. This variable is bound to the `ContentView`'s `contentHasScrolled` behaviour.
     @Binding var contentHasScrolled: Bool
+    
+    /// `showNavigation` is used to hide the bar altogether if we open detail views.
+    @Binding var showNavigation: Bool
     
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(maxWidth: .infinity)
-                .frame(height: 100)
+                .frame(height: .navigationBarHeight)
                 .background(.ultraThinMaterial)
                 .ignoresSafeArea()
                 .frame(maxHeight: .infinity, alignment: .top)
                 .blur(radius: contentHasScrolled ? 10 : 0)
                 .opacity(contentHasScrolled ? 1 : 0)
             Text(title)
-                .animatableFont(size: contentHasScrolled ? 22 : 34, weight: .bold)
+                .animatableFont(size: contentHasScrolled ? .titleSmall : .titleLarge, weight: .bold)
                 .foregroundStyle(.primary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.horizontal, 20)
-                .padding(.top, 24)
-                .opacity(contentHasScrolled ? 0.7 : 1)
+                .padding(.horizontal, .titleHorizontal)
+                .padding(.top, .titleTop)
+                .opacity(contentHasScrolled ? .titleFaded : .titleStrong)
         }
+        .offset(y: showNavigation ? 0 : .navigationBarHiddenY)
+        .accessibility(hidden: !showNavigation)
+        .offset(y: contentHasScrolled ? .navigationBarContentHasScrolledY : 0)
     }
 }
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false))
+        Group {
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false), showNavigation: .constant(true))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(true), showNavigation: .constant(true))
+        }
     }
 }

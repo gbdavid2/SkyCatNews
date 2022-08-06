@@ -31,4 +31,11 @@ extension CGFloat {
     // MARK: UI Padding
     static var titleHorizontal = CGFloat(20)
     static var titleTop = CGFloat(24)
+    
+    // MARK: Frame sizes
+    static var navigationBarHeight = CGFloat(100)
+    
+    // MARK: Offsets
+    static var navigationBarHiddenY = CGFloat(-120)
+    static var navigationBarContentHasScrolledY = CGFloat(-16)
 }
