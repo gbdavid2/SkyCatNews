@@ -14,6 +14,9 @@
 		2DB1412F289D90B900A32A66 /* SkyCatNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1412E289D90B900A32A66 /* SkyCatNewsTests.swift */; };
 		2DB14139289D90B900A32A66 /* SkyCatNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB14138289D90B900A32A66 /* SkyCatNewsUITests.swift */; };
 		2DB1413B289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */; };
+		2DE6A83D289E64FA00123354 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A83C289E64FA00123354 /* NavigationBar.swift */; };
+		2DE6A840289E659300123354 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A83F289E659300123354 /* StringExtensions.swift */; };
+		2DE6A843289E668900123354 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE6A842289E668900123354 /* AnimatableFontModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		2DB14134289D90B900A32A66 /* SkyCatNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyCatNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB14138289D90B900A32A66 /* SkyCatNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsUITests.swift; sourceTree = "<group>"; };
 		2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2DE6A83C289E64FA00123354 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		2DE6A83F289E659300123354 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		2DE6A842289E668900123354 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				2DB1411D289D90B800A32A66 /* SkyCatNewsApp.swift */,
-				2DB1411F289D90B800A32A66 /* ContentView.swift */,
+				2DE6A83B289E64CF00123354 /* Navigation */,
+				2DB14147289E643D00A32A66 /* Views */,
+				2DE6A83E289E657500123354 /* Model */,
+				2DE6A841289E666400123354 /* Styles */,
 				2DB14121289D90B900A32A66 /* Assets.xcassets */,
 				2DB14123289D90B900A32A66 /* Preview Content */,
 			);
@@ -125,6 +134,46 @@
 				2DB1413A289D90B900A32A66 /* SkyCatNewsUITestsLaunchTests.swift */,
 			);
 			path = SkyCatNewsUITests;
+			sourceTree = "<group>";
+		};
+		2DB14147289E643D00A32A66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2DB1411F289D90B800A32A66 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2DE6A83B289E64CF00123354 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6A83C289E64FA00123354 /* NavigationBar.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2DE6A83E289E657500123354 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6A844289E68DF00123354 /* Extensions */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2DE6A841289E666400123354 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6A842289E668900123354 /* AnimatableFontModifier.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		2DE6A844289E68DF00123354 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2DE6A83F289E659300123354 /* StringExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE6A840289E659300123354 /* StringExtensions.swift in Sources */,
 				2DB14120289D90B800A32A66 /* ContentView.swift in Sources */,
 				2DB1411E289D90B800A32A66 /* SkyCatNewsApp.swift in Sources */,
+				2DE6A843289E668900123354 /* AnimatableFontModifier.swift in Sources */,
+				2DE6A83D289E64FA00123354 /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
