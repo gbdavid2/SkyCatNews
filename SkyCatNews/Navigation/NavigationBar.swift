@@ -47,5 +47,10 @@ struct NavigationBar_Previews: PreviewProvider {
             NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false), showNavigation: .constant(true))
             NavigationBar(title: .skyTitle, contentHasScrolled: .constant(true), showNavigation: .constant(true))
         }
+        Group {
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false), showNavigation: .constant(true))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(true), showNavigation: .constant(true))
+        }
+        .preferredColorScheme(.dark)
     }
 }
