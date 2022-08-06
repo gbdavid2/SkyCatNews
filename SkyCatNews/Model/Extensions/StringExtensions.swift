@@ -12,6 +12,13 @@ extension String {
     // MARK: UI Strings
     static var skyTitle = "Sky Cat News"
     
+    // MARK: UI - Geometry Reader
+    static var scroll = "scroll"
+    
+    // MARK: UI Assets
+    static var background = "Background"
+    static var blob1 = "Blob"
+    
 }
 
 extension Double {
