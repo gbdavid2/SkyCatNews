@@ -1,6 +1,6 @@
 //
-//  SkyCatNewsUITestsExtensions.swift
-//  SkyCatNewsUITests
+//  SkyCatNewsTestsExtensions.swift
+//  SkyCatNewsTests
 //
 //  Created by David Garces on 06/08/2022.
 //

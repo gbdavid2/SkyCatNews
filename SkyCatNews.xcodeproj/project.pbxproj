@@ -12,6 +12,7 @@
 		2D628BDA289EA95500C73357 /* sample_story1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D628BD8289EA95500C73357 /* sample_story1.json */; };
 		2D628BDB289EA95500C73357 /* sample_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D628BD9289EA95500C73357 /* sample_list.json */; };
 		2D628BDD289EB40100C73357 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2D628BDC289EB40100C73357 /* README.md */; };
+		2D628BDF289EB85900C73357 /* SkyCatNewsTestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D628BDE289EB85900C73357 /* SkyCatNewsTestsExtensions.swift */; };
 		2DB1411E289D90B800A32A66 /* SkyCatNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1411D289D90B800A32A66 /* SkyCatNewsApp.swift */; };
 		2DB14120289D90B800A32A66 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1411F289D90B800A32A66 /* ContentView.swift */; };
 		2DB14122289D90B900A32A66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB14121289D90B900A32A66 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		2D628BD8289EA95500C73357 /* sample_story1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_story1.json; sourceTree = "<group>"; };
 		2D628BD9289EA95500C73357 /* sample_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_list.json; sourceTree = "<group>"; };
 		2D628BDC289EB40100C73357 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2D628BDE289EB85900C73357 /* SkyCatNewsTestsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsTestsExtensions.swift; sourceTree = "<group>"; };
 		2DB1411A289D90B800A32A66 /* SkyCatNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyCatNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB1411D289D90B800A32A66 /* SkyCatNewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyCatNewsApp.swift; sourceTree = "<group>"; };
 		2DB1411F289D90B800A32A66 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB1412E289D90B900A32A66 /* SkyCatNewsTests.swift */,
+				2D628BDE289EB85900C73357 /* SkyCatNewsTestsExtensions.swift */,
 			);
 			path = SkyCatNewsTests;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DB1412F289D90B900A32A66 /* SkyCatNewsTests.swift in Sources */,
+				2D628BDF289EB85900C73357 /* SkyCatNewsTestsExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

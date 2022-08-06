@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Custom navigation bar for SkyCatNews that allows creating a custom layout and custom behaviours and animations
 struct NavigationBar: View {
     
     var title = "" 
