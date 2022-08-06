@@ -18,7 +18,7 @@ struct ContentView: View {
             content
                 .background(
                     Image(.blob1)
-                        .offset(x: -100, y: -400)
+                        .offset(x: .blobOffsetX, y: .blobOffsetY)
                         .accessibility(hidden: true)
                 )
         }
@@ -29,11 +29,7 @@ struct ContentView: View {
             scrollDetection
             
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
                 Text("Hello, world!")
-                
             }
         }
         .padding(.top, 60)

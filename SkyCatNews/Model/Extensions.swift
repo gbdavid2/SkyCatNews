@@ -39,10 +39,12 @@ extension CGFloat {
     static var titleHorizontal = CGFloat(20)
     static var titleTop = CGFloat(24)
     
-    // MARK: Frame sizes
+    // MARK: UI Frame sizes
     static var navigationBarHeight = CGFloat(100)
     
-    // MARK: Offsets
+    // MARK: UI Offsets
     static var navigationBarHiddenY = CGFloat(-120)
     static var navigationBarContentHasScrolledY = CGFloat(-16)
+    static var blobOffsetX = CGFloat(-100)
+    static var blobOffsetY = CGFloat(-400)
 }
