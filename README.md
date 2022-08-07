@@ -8,9 +8,9 @@ The App features the custom navigation control `NavigationBar`. This was require
 
 ## Architecture
 
-I've followed a __layered__ approach where components are distributed across software layers and they communicate with each other when required:
+I've followed a __layered__ approach where components are distributed across software layers. They communicate with each other when required.
 
-* __UI__ - This compoment start on `ContentView`, as this is the view at the top of the hierarchy.
+* __UI__ - This compoment starts on `ContentView`, as this is the view at the top of the hierarchy.
 * __Presentation__ - This layer is in charge of controlling and communicating changes between the data layer and the UI. `NewsModel` is the main compoment of this layer. It uses `ObservableObject` as part of the _Combine framework_ to communicate changes between layers. _@Published_ property wrapper has been used as part of Apple's new reactive model to refresh data in the UI and in the data layer automatically.  
 * __Data__ - This layer contains the structures that hold data used by the presentation layer: `NewsItem`
 * __Other components__ - 

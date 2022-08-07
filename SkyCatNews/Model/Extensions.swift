@@ -19,6 +19,15 @@ extension String {
     static var background = "Background"
     static var blob1 = "Blob"
     
+    // MARK: JSON Test files
+    static var sampleList = "sample_list.json"
+    static var sampleStory = "sample_story1.json"
+    
+    // MARK: JSON Test values
+    static var storyID = "1"
+    static var storyHeadline = "Cat story headline"
+    
+    
 }
 
 extension Double {
