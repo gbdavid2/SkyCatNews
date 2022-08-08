@@ -9,12 +9,12 @@ import Foundation
 
 class NewsModel: ObservableObject {
     
-    var networkProvider: NetworkProviding
+    var networkProvider: DecodeProviding
     
     // TODO: does this direct dependency break the Dependency-inversion principle?
     @Published var stories: Stories?
     
-    init(networkProvider: NetworkProviding) {
+    init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
     }
     

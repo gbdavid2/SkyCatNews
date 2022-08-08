@@ -20,4 +20,4 @@ I've followed a __layered__ approach where components are distributed across sof
 
 Tests coverage for business logic and model data can be found in `SkyCatNewsTests`.
 Test coverage for UI behaviours and workflows can be found in `SkyCatNewsUITests`.
-I created extension files for each test project so I could more easily validate data. If there are any changes in the main file [Extensions.swift](/SkyCatNews/Model/Extensions.swift), then the file [SkyCatNewsTestsExtensions.swift](SkyCatNewsTests/SkyCatNewsTestsExtensions.swift)  and the file [SkyCatNewsUITestsExtensions.swift](/SkyCatNewsUITests/SkyCatNewsUITestsExtensions.swift) will also need changing.
+I added additional test values in [Extensions.swift](/SkyCatNews/Model/Extensions.swift). These are widely used in both test projects to validate data. This file needs to have __Target Membership__ for all the projects so that it can be used by the test projects.

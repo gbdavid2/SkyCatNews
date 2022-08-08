@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol NetworkProviding {
-    func requestData()
-}
-
-struct NetworkProvider: NetworkProviding {
-    func requestData() {
-        print("REAL data requested")
-    }
-}
-
-struct MockedNetworkProvider: NetworkProviding {
-    func requestData() {
-        print("FAKE data requested")
-    }
-}
+//protocol NetworkProviding: DecodeProviding {
+//    func requestData()
+//}
+//
+//struct NetworkProvider: NetworkProviding {
+//    func requestData() {
+//        print("REAL data requested")
+//    }
+//}
+//
+//struct MockedNetworkProvider: NetworkProviding {
+//    func requestData() {
+//        print("FAKE data requested")
+//    }
+//}
