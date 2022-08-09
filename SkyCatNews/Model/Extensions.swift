@@ -10,7 +10,7 @@ import SwiftUI
 extension String {
     
     // MARK: UI Strings
-    static var skyTitle = "Sky Cat News"
+    static var skyTitle = "Sky Cat News (offline)"
     
     // MARK: UI - Geometry Reader
     static var scroll = "scroll"

@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State var contentHasScrolled = false
+    @State var title: String = .skyTitle
+    @ObservedObject var storiesModel = StoriesModel(networkProvider: FileProvider(filename: .sampleList))
     
     var body: some View {
         ZStack {
@@ -21,6 +23,14 @@ struct ContentView: View {
                         .offset(x: .blobOffsetX, y: .blobOffsetY)
                         .accessibility(hidden: true)
                 )
+        }.task {
+            await storiesModel.loadStories()
+            
+            
+            if let theTitle = storiesModel.stories?.title {
+                title = theTitle
+            }
+            print ("requested title: \(title)")
         }
     }
     
@@ -35,7 +45,7 @@ struct ContentView: View {
         .padding(.top, 60)
         .coordinateSpace(name: "scroll")
         .overlay(
-            NavigationBar(title: .skyTitle, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
+            NavigationBar(title: $title, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
                 .accessibilityAddTraits(.isHeader)
         )
     }
