@@ -7,35 +7,17 @@
 
 import Foundation
 
-/// `NewsParser` initialises with a default `JSONDecoder()` but you can give specific `JSONDecoder` instances at initialisation when required
-//struct NewsParser: DecodeProviding {
-//
-//    private let decoder: JSONDecoder
-//
-//    /// request a type of `decoder` at initialisation but give the option to use the default `JSONDecoder()`
-//    init(decoder: JSONDecoder = JSONDecoder()) {
-//        self.decoder = decoder
-//    }
-//
-//    /// - returns: If parsing failed, an empty array `[]`, otherwise the `[Story]` array with parsed data.
-//    func decode(data: Data) -> Decodable? {
-//        //return try decode(data: data)
-//        return (try? decoder.decode([Story].self, from: data)) ?? []
-//    }
-//}
-
-
 protocol DecodeProviding {
     func parseData<T: Decodable>() -> T?
 }
 
-/// `decode` is functionality that will be the same for any structure that conforms to `DecodeProviding`, therefore we have created an extension to the protocol to create these specific implementations. The implementations supports decoding as a generic element `T`
+/// `decode` is functionality that will be the same for any structure that conforms to `DecodeProviding`, therefore we have created an extension to the protocol to create these specific implementations. The implementations supports decoding as a __generic__ element `T`, thus we can easily decode `Story` or `Stories` or other new data structures when required.
 extension DecodeProviding {
     fileprivate func decode<T: Decodable>(_ data: Data) throws -> T? {
         do {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: data)
-                        
+            
         } catch {
             throw error
         }
@@ -45,8 +27,8 @@ extension DecodeProviding {
 struct FileProvider: DecodeProviding {
     
     let filename: String
- 
-    // the signature of `load` is specific to `FileProvider` therefore this implementation is
+    
+    // the signature of `parseData` is specific to `FileProvider` therefore this implementation is specified below
     func parseData<T: Decodable>() -> T? {
         guard let data = getDataFromFile() else { return nil }
         // 3. decode the contents of the file
@@ -59,7 +41,7 @@ struct FileProvider: DecodeProviding {
     }
     
     /// `getDataFromFile` has the specific implementation for `FileProvider` which is to get data from a file. It's __private__ as it's for use within `FileProvider` only
-     private func getDataFromFile() -> Data? {
+    private func getDataFromFile() -> Data? {
         // 1. load the data from the project
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
         else {
@@ -75,4 +57,27 @@ struct FileProvider: DecodeProviding {
         }
     }
     
+}
+
+struct NetworkProvider: DecodeProviding, NetworkProviding {
+    
+    var url: URL
+
+    func parseData<T: Decodable>() -> T? {
+        print("REAL data requested")
+        return nil
+    }
+    
+}
+
+struct MockedNetworkProvider: DecodeProviding {
+    
+    func parseData<T: Decodable>() -> T? {
+        print("FAKE data requested")
+        return nil
+    }
+}
+
+protocol NetworkProviding {
+    var url: URL {get set}
 }
