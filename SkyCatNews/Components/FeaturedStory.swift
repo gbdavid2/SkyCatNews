@@ -25,14 +25,12 @@ struct FeaturedStory: View {
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                        
                     } placeholder: {
                         ProgressView()
                     }
                     .matchedGeometryEffect(id: "background_image", in: namespace)
-                    
                 )
-                
-            
             VStack (alignment: .leading, spacing: 8) {
                 Spacer()
                 Text(story.headline)

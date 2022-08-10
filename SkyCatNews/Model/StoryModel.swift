@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class StoryModel: ObservableObject {
     
@@ -14,6 +15,8 @@ class StoryModel: ObservableObject {
     
     @Published var isFetching: Bool = true
     //@Published var story: Story = Story(
+    
+    @Published var image: Image?
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -28,5 +31,7 @@ class StoryModel: ObservableObject {
 //        }
         isFetching = false
     }
+    
+    
     
 }

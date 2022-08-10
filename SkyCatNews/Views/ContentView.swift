@@ -32,8 +32,6 @@ struct ContentView: View {
                             .accessibility(hidden: true)
                     )
             }
-            
-            
         }.task {
             await storiesModel.loadStories()
         }
