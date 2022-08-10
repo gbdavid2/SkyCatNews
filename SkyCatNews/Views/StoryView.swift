@@ -43,7 +43,7 @@ struct StoryView: View {
             Button {
                 withAnimation(.closeStory) {
                     model.showDetail = false
-                    self.presentationMode.wrappedValue.dismiss()
+                   // self.presentationMode.wrappedValue.dismiss()
                 }
             } label: {
                 Image(systemName: "xmark")

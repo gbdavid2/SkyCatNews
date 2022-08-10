@@ -65,7 +65,7 @@ struct ContentView: View {
                 
                 featuredStory
                     .shadow(color: Color("Shadow").opacity(0.3),
-                             radius: 30, x: 0, y: 30)
+                            radius: 30, x: 0, y: 30)
                     .frame(height: 350)
                     .padding([.horizontal,.bottom], .generalHorizontal)
                 
@@ -76,7 +76,7 @@ struct ContentView: View {
                     .backgroundStyle()
                     .padding(.generalHorizontal)
                     .accessibilityIdentifier(.storiesViewIdentifier)
-                    
+                
             }
         }
         .padding(.top, 60)
