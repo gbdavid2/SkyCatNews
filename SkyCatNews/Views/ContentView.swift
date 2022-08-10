@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var contentHasScrolled = false
-    @State var title: String = .skyTitle
     @ObservedObject var storiesModel = StoriesModel(networkProvider: FileProvider(filename: .sampleList))
     
     var body: some View {
@@ -25,12 +24,9 @@ struct ContentView: View {
                 )
         }.task {
             await storiesModel.loadStories()
-            
-            
-            if let theTitle = storiesModel.stories?.title {
-                title = theTitle
-            }
-            print ("requested title: \(title)")
+        }
+        .refreshable {
+            await storiesModel.loadStories()
         }
     }
     
@@ -39,13 +35,23 @@ struct ContentView: View {
             scrollDetection
             
             VStack {
-                Text("Hello, world!")
+                Text("Main Story goes here")
+                    .padding()
+                    .padding(.vertical, 100) // this will be changed
+                Text(verbatim: .newsSection.uppercased())
+                    .sectionTitleModifier()
+                StoriesView(storiesModel: storiesModel)
+                    .background(.ultraThinMaterial)
+                    .backgroundStyle()
+                    .padding(.generalHorizontal)
+                    .accessibilityIdentifier(.storiesViewIdentifier)
+                    
             }
         }
         .padding(.top, 60)
         .coordinateSpace(name: "scroll")
         .overlay(
-            NavigationBar(title: $title, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
+            NavigationBar(title: $storiesModel.title, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
                 .accessibilityAddTraits(.isHeader)
         )
     }

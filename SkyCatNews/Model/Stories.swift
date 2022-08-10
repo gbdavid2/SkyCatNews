@@ -41,5 +41,18 @@ struct LinkItem: Decodable {
 struct URLItem: Decodable {
     let href: String
     let templated: Bool
-    let type: String
+    let type: URLType
+    
+    enum URLType: String, Decodable {
+        case image = "image/jpeg"
+    }
+}
+
+extension MediaItem {
+    /// `sampleMediaItem` is meant to be used for debug purposes only, therefore the returned item is based on a forced unwrapping
+    static func sampleMediaItem() -> MediaItem {
+        let fileProvider = FileProvider(filename: .sampleList)
+        let items: Stories? = fileProvider.parseData()
+        return items!.data.first!
+    }
 }

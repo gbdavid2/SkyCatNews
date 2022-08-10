@@ -11,9 +11,13 @@ extension String {
     
     // MARK: UI Strings
     static var skyTitle = "Sky Cat News (offline)"
+    static var newsSection = "Latest"
     
     // MARK: UI - Geometry Reader
     static var scroll = "scroll"
+    
+    // MARK: UI - Stories
+    static var loadingStories = "Loading News..."
     
     // MARK: UI Assets
     static var background = "Background"
@@ -26,6 +30,7 @@ extension String {
     // MARK: JSON Test values
     static var storyID = "1"
     static var storyHeadline = "Cat story headline"
+    static var storyTeaserText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     
     // MARK: URL Common Components
     static var defaultScheme = "https"
@@ -36,7 +41,7 @@ extension String {
     
     // MARK: URL Test Image components
     static var testPicsumAPI_Host = "picsum.photos"
-    static var testPicsumAPI_Path = "/200/300"
+    static var testPicsumAPI_Path = "/100/100"
     
     // MARK: URL Components Live server
     static var skyCat_Host = "sky-cat-news.com"
@@ -45,6 +50,13 @@ extension String {
     
     // MARK: URL Messages
     static var invalidURL = "Invalid static URL"
+    
+    // MARK: Accessibility Identifiers
+    static var mediaItemImageIdentifier = "media_image_identifier"
+    static var storiesViewIdentifier = "stories_view_identifier"
+    
+    // MARK: Accessibility Labels
+    static var mediaItemImage = "Media Item Image"
 
 }
 

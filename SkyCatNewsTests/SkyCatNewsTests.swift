@@ -31,7 +31,8 @@ final class SkyCatNewsTests: XCTestCase {
     func testFileProviderCanDecondeBasicStories() {
         let stories: Stories = fetchLocalStoriesArray()
 
-        XCTAssertEqual(stories.title, .skyTitle)
+        XCTAssertNotEqual(stories.title, .skyTitle)
+        XCTAssertNotEqual(stories.title, "")
     }
     
     /// All `MediaItem` entries should have a `type` value decoded.
@@ -57,8 +58,8 @@ final class SkyCatNewsTests: XCTestCase {
         webLinks.forEach { XCTAssertNotNil($0.teaserImage) }
         
         // test contents of random element - from the sample file we can see that all elements have "image/jpeg" as the return value
-        XCTAssertEqual(dataStories.randomElement()?.teaserImage?._links.url.type, "image/jpeg")
-        XCTAssertEqual(webLinks.randomElement()?.teaserImage?._links.url.type, "image/jpeg")
+        XCTAssertEqual(dataStories.randomElement()?.teaserImage?._links.url.type, URLItem.URLType.image)
+        XCTAssertEqual(webLinks.randomElement()?.teaserImage?._links.url.type, URLItem.URLType.image)
         
     }
     

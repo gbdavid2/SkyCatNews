@@ -12,8 +12,10 @@ class StoriesModel: ObservableObject {
     var networkProvider: DecodeProviding
     
     // TODO: does this direct dependency break the Dependency-inversion principle?
-    @Published var stories: Stories?
+    var storiesData: Stories?
     @Published var isFetching: Bool = true
+    @Published var title: String = .skyTitle
+    @Published var stories = [MediaItem]()
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -22,7 +24,11 @@ class StoriesModel: ObservableObject {
     @MainActor
     func loadStories() async {
         isFetching = true
-        stories = await networkProvider.parseData()
+        storiesData = await networkProvider.parseData()
+        if let result = storiesData {
+            title = result.title
+            stories = result.data
+        }
         isFetching = false
     }
 }

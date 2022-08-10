@@ -12,3 +12,4 @@ struct Story: Identifiable, Decodable {
     let id: String
     let headline: String
 }
+

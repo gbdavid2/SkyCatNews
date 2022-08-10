@@ -19,4 +19,13 @@ final class SkyCatNewsUITests: XCTestCase {
     func testCanDisplayTitle() {
         XCTAssertTrue(app.staticTexts[.skyTitle].isHittable)
     }
+    
+    func testCanDisplayNewsSection() {
+        XCTAssertTrue(app.staticTexts[.newsSection.uppercased()].isHittable)
+    }
+    
+    func testCanDisplayStoriesView() {
+        let storiesView = app.staticTexts[.storiesViewIdentifier]
+        XCTAssertTrue(storiesView.isHittable)
+    }
 }
