@@ -43,7 +43,6 @@ struct FeaturedStory: View {
                     .foregroundStyle(.secondary)
                     .lineLimit(sizeCategory > .large ? 1 : 2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .matchedGeometryEffect(id: "teaser", in: namespace)
                 Text("8 min ago")
                     .font(.footnote)
                     .foregroundStyle(.secondary)

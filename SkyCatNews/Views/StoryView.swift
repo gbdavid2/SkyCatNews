@@ -119,7 +119,6 @@ struct StoryView: View {
                         .frame(maxHeight: .infinity, alignment: .bottom)
                         .cornerRadius(30)
                         .blur(radius: 30)
-                        .matchedGeometryEffect(id: "blur", in: namespace)
                         .opacity(appear[0] ? 0 : 1)
                 )
                 .background(
@@ -141,7 +140,6 @@ struct StoryView: View {
         VStack(spacing: 16) {
             
             Text(String.storyTeaserText)
-                .matchedGeometryEffect(id: "teaser", in: namespace)
             Divider()
             Text("Advert")
             Divider()
