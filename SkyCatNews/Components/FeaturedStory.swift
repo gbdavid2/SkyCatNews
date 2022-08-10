@@ -36,16 +36,19 @@ struct FeaturedStory: View {
                 Text(story.headline)
                     .font(.title).bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .matchedGeometryEffect(id: "headline", in: namespace)
                 
                 Text(String.storyTeaserText)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(sizeCategory > .large ? 1 : 2)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .matchedGeometryEffect(id: "teaser", in: namespace)
                 Text("8 min ago")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.top,5)
+                    .matchedGeometryEffect(id: "time", in: namespace)
             }
             .padding([.bottom,.horizontal], .general)
         }

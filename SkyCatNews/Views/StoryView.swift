@@ -96,7 +96,7 @@ struct StoryView: View {
                         .font(.title).bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.primary)
-                        .matchedGeometryEffect(id: "title", in: namespace)
+                        .matchedGeometryEffect(id: "headline", in: namespace)
                     
                     Divider()
                         .foregroundColor(.secondary)
@@ -106,6 +106,7 @@ struct StoryView: View {
                         Text("Updated 8 min ago")
                             .font(.footnote.weight(.medium))
                             .foregroundStyle(.secondary)
+                            .matchedGeometryEffect(id: "time", in: namespace)
                     }
                     .opacity(appear[1] ? 1 : 0)
                     .accessibilityElement(children: .combine)
@@ -140,6 +141,7 @@ struct StoryView: View {
         VStack(spacing: 16) {
             
             Text(String.storyTeaserText)
+                .matchedGeometryEffect(id: "teaser", in: namespace)
             Divider()
             Text("Advert")
             Divider()
