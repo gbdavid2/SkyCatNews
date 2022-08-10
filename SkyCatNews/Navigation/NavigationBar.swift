@@ -16,7 +16,7 @@ struct NavigationBar: View {
     @Binding var contentHasScrolled: Bool
     
     /// `showNavigation` is used to hide the bar altogether if we open detail views.
-    @Binding var showNavigation: Bool
+    @EnvironmentObject var model: NavigationModel
     
     var body: some View {
         ZStack {
@@ -37,8 +37,8 @@ struct NavigationBar: View {
                 .padding(.top, .titleTop)
                 .opacity(contentHasScrolled ? .titleFaded : .titleStrong)
         }
-        .offset(y: showNavigation ? 0 : .navigationBarHiddenY)
-        .accessibility(hidden: !showNavigation)
+        .offset(y: model.showNavigation ? 0 : .navigationBarHiddenY)
+        .accessibility(hidden: !model.showNavigation)
         .offset(y: contentHasScrolled ? .navigationBarContentHasScrolledY : 0)
     }
 }
@@ -46,13 +46,15 @@ struct NavigationBar: View {
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false), showNavigation: .constant(true))
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true), showNavigation: .constant(true))
+            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false))
+            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true))
         }
+        .environmentObject(NavigationModel())
         Group {
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false), showNavigation: .constant(true))
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true), showNavigation: .constant(true))
+            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false))
+            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true))
         }
+        .environmentObject(NavigationModel())
         .preferredColorScheme(.dark)
     }
 }

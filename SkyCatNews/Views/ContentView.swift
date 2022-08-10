@@ -10,24 +10,53 @@ import SwiftUI
 struct ContentView: View {
     
     @State var contentHasScrolled = false
+    @State var hideStatusBar = false
+    
     @ObservedObject var storiesModel = StoriesModel(networkProvider: FileProvider(filename: .sampleList))
+    
+    /// `namespace` is used in this parent view to control animations between displaying `FeaturedStory` and `StoryView` (an expanded version of the `FeaturedStory`
+    @Namespace var namespace
+    @EnvironmentObject var model: NavigationModel
     
     var body: some View {
         ZStack {
             Color(.background).ignoresSafeArea()
             
-            content
-                .background(
-                    Image(.blob1)
-                        .offset(x: .blobOffsetX, y: .blobOffsetY)
-                        .accessibility(hidden: true)
-                )
+            if model.showDetail {
+                storyDetail
+            } else {
+                content
+                    .background(
+                        Image(.blob1)
+                            .offset(x: .blobOffsetX, y: .blobOffsetY)
+                            .accessibility(hidden: true)
+                    )
+            }
+            
+            
         }.task {
             await storiesModel.loadStories()
         }
         .refreshable {
             await storiesModel.loadStories()
         }
+        .onChange(of: model.showDetail) { newValue in
+            if newValue {
+                model.showNavigation = false
+                hideStatusBar = true
+            } else {
+                model.showNavigation = true
+                hideStatusBar = false
+            }
+        }
+        .statusBar(hidden: hideStatusBar)
+    }
+    
+    var featuredStory: some View {
+        FeaturedStory(story: Story.sampleStory)
+    }
+    var storyDetail: some View {
+        StoryView(namespace: namespace, story:  .constant(Story.sampleStory))
     }
     
     var content: some View {
@@ -35,9 +64,12 @@ struct ContentView: View {
             scrollDetection
             
             VStack {
-                Text("Main Story goes here")
-                    .padding()
-                    .padding(.vertical, 100) // this will be changed
+                
+                featuredStory
+                    .frame(height: 350)
+                    .padding(.horizontal, .generalHorizontal)
+                    .offset(y: -80)
+                
                 Text(verbatim: .newsSection.uppercased())
                     .sectionTitleModifier()
                 StoriesView(storiesModel: storiesModel)
@@ -51,7 +83,7 @@ struct ContentView: View {
         .padding(.top, 60)
         .coordinateSpace(name: "scroll")
         .overlay(
-            NavigationBar(title: $storiesModel.title, contentHasScrolled: $contentHasScrolled, showNavigation: .constant(true))
+            NavigationBar(title: $storiesModel.title, contentHasScrolled: $contentHasScrolled)
                 .accessibilityAddTraits(.isHeader)
         )
     }
@@ -77,8 +109,12 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-        ContentView()
-            .preferredColorScheme(.dark)
+        Group {
+            ContentView()
+            ContentView()
+                .preferredColorScheme(.dark)
+        }
+        .environmentObject(NavigationModel())
+        
     }
 }
