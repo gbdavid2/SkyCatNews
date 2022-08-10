@@ -13,7 +13,7 @@ struct StoriesViewItem: View {
     
     var body: some View {
         HStack(spacing: 15) {
-            MediaItemImage(url: URL.randomImageURL)
+            MediaItemImage(url: URL.randomImageURL_small)
                 .frame(width: 50, height:50)
 
             VStack(alignment: .leading) {

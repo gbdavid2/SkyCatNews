@@ -41,7 +41,8 @@ extension String {
     
     // MARK: URL Test Image components
     static var testPicsumAPI_Host = "picsum.photos"
-    static var testPicsumAPI_Path = "/100/100"
+    static var testPicsumAPI_Path_small = "/100/100"
+    static var testPicsumAPI_Path_large = "/300/200"
     
     // MARK: URL Components Live server
     static var skyCat_Host = "sky-cat-news.com"
@@ -72,6 +73,7 @@ extension Double {
 
 extension CGFloat {
     // MARK: UI General padding
+    static var general = CGFloat(20)
     static var generalHorizontal = CGFloat(20)
     
     // MARK: UI Padding
@@ -118,11 +120,19 @@ extension URL {
         return urlComponents.checkedURL
     }
     
-    static var randomImageURL: URL {
+    static var randomImageURL_small: URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = .defaultScheme
         urlComponents.host = .testPicsumAPI_Host
-        urlComponents.path = .testPicsumAPI_Path
+        urlComponents.path = .testPicsumAPI_Path_small
+        return urlComponents.checkedURL
+    }
+    
+    static var randomImageURL_large: URL {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = .defaultScheme
+        urlComponents.host = .testPicsumAPI_Host
+        urlComponents.path = .testPicsumAPI_Path_large
         return urlComponents.checkedURL
     }
     

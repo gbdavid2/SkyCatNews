@@ -9,45 +9,53 @@ import Foundation
 import SwiftUI
 
 struct FeaturedStory: View {
+    
     var story: Story
+    var namespace: Namespace.ID
+    
     @EnvironmentObject var model: NavigationModel
     @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Spacer()
-            AsyncImage(url: URL.randomImageURL) { image in
-                image
-                    .resizable()
-                    .frame(width: 26, height: 26)
-                    .cornerRadius(10)
-                    .padding(8)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(18)
-            } placeholder: {
-                ProgressView()
+        VStack {
+            Color.clear
+                .frame(height: 180)
+                .background(
+                    AsyncImage(url: URL.randomImageURL_large) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .matchedGeometryEffect(id: "background_image", in: namespace)
+                    
+                )
+                
+            
+            VStack (alignment: .leading, spacing: 8) {
+                Spacer()
+                Text(story.headline)
+                    .font(.title).bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text(String.storyTeaserText)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(sizeCategory > .large ? 1 : 2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("8 min ago")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .padding(.top,5)
             }
-            
-            Text(story.headline)
-                .font(.title).bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Text(String.storyTeaserText)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .lineLimit(sizeCategory > .large ? 1 : 2)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text(String.storyHeadline)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .padding(.top,5)
+            .padding([.bottom,.horizontal], .general)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 40)
-        .frame(maxWidth: .infinity)
-        .frame(height: 350)
         .background(.ultraThinMaterial)
-        .backgroundColor(opacity: 0.5)
+        .mask(
+            RoundedRectangle(cornerRadius: 30)
+                .matchedGeometryEffect(id: "mask", in: namespace)
+        )
         .onTapGesture {
             withAnimation(.openStory) {
                 model.showDetail = true
@@ -57,12 +65,16 @@ struct FeaturedStory: View {
 }
 
 struct FeaturedStory_Previews: PreviewProvider {
+    @Namespace static var namespace
     static var previews: some View {
         Group {
-            FeaturedStory(story: Story.sampleStory)
-            FeaturedStory(story: Story.sampleStory)
+            FeaturedStory(story: Story.sampleStory, namespace: namespace)
+            FeaturedStory(story: Story.sampleStory, namespace: namespace)
                 .environment(\.sizeCategory, .accessibilityLarge)
-        }
+        }.shadow(color: Color("Shadow").opacity(0.3),
+                 radius: 30, x: 0, y: 30)
+        .padding(20)
+        .frame(height: 350)
         .environmentObject(NavigationModel())
     }
 }

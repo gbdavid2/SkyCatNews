@@ -208,9 +208,9 @@
 		2DDE4C8D28A288B900DA23E1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2D56461828A2FB6A0017F1C8 /* FeaturedStory.swift */,
 				2DDE4C8E28A288F200DA23E1 /* StoriesView.swift */,
 				2DDE4C9028A295DB00DA23E1 /* StoriesViewItem.swift */,
-				2D56461828A2FB6A0017F1C8 /* FeaturedStory.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

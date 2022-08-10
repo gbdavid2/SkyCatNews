@@ -39,7 +39,7 @@ struct StoryView: View {
             .frame(maxWidth: .infinity)
             .frame(height: scrollY > 0 ? 500 + scrollY: 500)
             .background(
-                AsyncImage(url: URL.randomImageURL) { image in
+                AsyncImage(url: URL.randomImageURL_small) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)

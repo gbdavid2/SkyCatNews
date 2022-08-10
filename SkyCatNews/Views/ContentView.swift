@@ -53,7 +53,7 @@ struct ContentView: View {
     }
     
     var featuredStory: some View {
-        FeaturedStory(story: Story.sampleStory)
+        FeaturedStory(story: Story.sampleStory, namespace: namespace)
     }
     var storyDetail: some View {
         StoryView(namespace: namespace, story:  .constant(Story.sampleStory))
@@ -66,9 +66,10 @@ struct ContentView: View {
             VStack {
                 
                 featuredStory
+                    .shadow(color: Color("Shadow").opacity(0.3),
+                             radius: 30, x: 0, y: 30)
                     .frame(height: 350)
-                    .padding(.horizontal, .generalHorizontal)
-                    .offset(y: -80)
+                    .padding([.horizontal,.bottom], .generalHorizontal)
                 
                 Text(verbatim: .newsSection.uppercased())
                     .sectionTitleModifier()
