@@ -242,11 +242,11 @@
 				2D56461C28A3A9580017F1C8 /* NavigationModel.swift */,
 				2D628BE2289EC5EA00C73357 /* StoriesModel.swift */,
 				2DDE4C9228A2985A00DA23E1 /* StoryModel.swift */,
+				2D3D093928A4F96100E9C77A /* Story.swift */,
 				2DE6A83F289E659300123354 /* Extensions.swift */,
 				2D628BE8289F102C00C73357 /* DataProviders.swift */,
 				2D628BEC289FA4B200C73357 /* ErrorProviders.swift */,
 				2D628BD0289E752700C73357 /* PreferenceKeys.swift */,
-				2D3D093928A4F96100E9C77A /* Story.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

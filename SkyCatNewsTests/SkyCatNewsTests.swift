@@ -104,28 +104,54 @@ final class SkyCatNewsTests: XCTestCase {
     
     // MARK: Date tests
     func testCanConvertDateFromUTCString() {
-        let validDate1 = Date.convert(fromString: .creationDate1)
-        let validDate2 = Date.convert(fromString: .modifiedDate1)
-        print(validDate1 ?? "")
-        XCTAssertNotNil(validDate1)
-        XCTAssertNotNil(validDate2)
+        let testDates = getTestDates()
+        
+        print(testDates.validDate1)
+        XCTAssertNotNil(testDates.validDate1)
+        XCTAssertNotNil(testDates.validDate2)
     }
     
-    func testCanCalcualeHoursForDate() {
-        guard let validDate1 = Date.convert(fromString: .creationDate1), let validDate2 = Date.convert(fromString: .modifiedDate1) else {
-            XCTFail("Failed to convert strings to dates - test cannot proceed")
-            return
-        }
+    func testCanCalculateHoursForDate() {
+        let testDates = getTestDates()
         
         // attempt to calculate minutes for oldDate first then newDate
-       let result1 = Date.minutesBetweenDates(validDate1, validDate2)
+        let result1 = Date.minutesBetweenDates(testDates.validDate1, testDates.validDate2)
         print("Result time is \(result1)")
         XCTAssertTrue(result1 > 0)
         
         // attempt to calcualte minutes for newDate first then oldDate
-        let result2 = Date.minutesBetweenDates(validDate2, validDate1)
+        let result2 = Date.minutesBetweenDates(testDates.validDate2, testDates.validDate1)
          print("Result time is \(result2)")
          XCTAssertTrue(result2 < 0)
+    }
+    
+    func testCanCalculateDaysHours() {
+        let testDates = getTestDates()
+        let result1 = Calendar.calculateTimeFromDate(fromDate: testDates.validDate1)
+        let result2 = Calendar.calculateTimeFromDate(fromDate: testDates.validDate1)
+        // since both results happened quite a while ago, we expect them to be days ago
+        XCTAssertEqual(result1.component, .day)
+        XCTAssertEqual(result2.component, .day)
+        XCTAssertTrue(result1.time > 0)
+        XCTAssertTrue(result2.time > 0)
+        
+        // test adding Today - 3 hours
+        let result3 = Calendar.calculateTimeFromDate(fromDate: Date().addingTimeInterval(-(60*60*3)))
+        XCTAssertTrue(result3.time == 3)
+        print("Calcualted time is \(result3)")
+        XCTAssertEqual(result3.component, .hour)
+        
+        // test adding Today - 4 minutes
+        let result4 = Calendar.calculateTimeFromDate(fromDate: Date().addingTimeInterval(-(60*4)))
+        XCTAssertTrue(result4.time == 4)
+        print("Calcualted time is \(result4)")
+        XCTAssertEqual(result4.component, .minute)
+        
+        // test adding Today + 2 hours - in this case we are setting the logic to return 0 whenever the date is in the future - we might need to change the logic based on user requirements.
+        let result5 = Calendar.calculateTimeFromDate(fromDate: Date().addingTimeInterval((60*60*2)))
+        XCTAssertTrue(result5.time == 0)
+        print("Calcualted time is \(result4)")
+        XCTAssertEqual(result5.component, .minute)
     }
     
     // MARK: Story tests
@@ -148,6 +174,14 @@ final class SkyCatNewsTests: XCTestCase {
         }
         
         return stories
+    }
+    
+    func getTestDates() -> (validDate1: Date, validDate2: Date) {
+        guard let validDate1 = Date.convert(fromString: .creationDate1), let validDate2 = Date.convert(fromString: .modifiedDate1) else {
+            XCTFail("Failed to convert strings to dates - test cannot proceed")
+            return (Date(), Date())
+        }
+        return (validDate1, validDate2)
     }
     
     

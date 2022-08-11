@@ -24,10 +24,6 @@ struct Story: NewsRepresentable, TimeReportable {
     func getMediaType() -> MediaItem.MediaItemType {
         return .story
     }
-    
-//    static func create(fromData data: MediaItem) {
-//        guard let headline = data.headline, updated =
-//    }
 }
 
 protocol StoryRepresentable {
@@ -79,7 +75,7 @@ extension TimeReportable {
     
     /// - returns: The minutes or hours (if more than 60m) that this story was updated based on the client timezone.
     private func getUpdatedTime() -> String {
-        let result = calculateTimeFromDate()
+        let result = Calendar.calculateTimeFromDate(fromDate: updated)
         let component = result.component == .minute ? "m" : "h"
         return "\(result.time) \(component)"
     }
@@ -88,22 +84,6 @@ extension TimeReportable {
         return "\(getUpdatedText()) \(getUpdatedTime()) \(String.ago)"
     }
 
-    /// Calcualtes the minutes/hours since the creation/modified date
-    /// - returns: A positive value if the creation/modified date is higher than `Date()`. the result will return
-    private func calculateTimeFromDate() -> (time: Int, component: Calendar.Component)  {
-        // get the user calendar
-        let calendar = Calendar.current
-        let today = Date()
-        
-        let minutes = calendar.dateComponents([.day], from: updated, to: today)
-        let hours = calendar.dateComponents([.hour], from: updated, to: today)
-        
-        let result_minutes = minutes.minute ?? -1
-        let result_hours = hours.hour ?? -1
-        
-        return result_minutes > 59 ? (result_hours, .hour) : (result_minutes, .minute)
-    }
-    
     func getUpdatedDate(creationDate: String, modifiedDate: String) -> (updatedDate: Date, creationDateOnly: Bool) {
         // by default we assume it is not creationDateOnly if modifiedDate has a value
         let creationDateOnly = modifiedDate == ""
@@ -120,7 +100,6 @@ extension TimeReportable {
         } else {
             return (resultCreationDate, true)
         }
-        
     }
     
     

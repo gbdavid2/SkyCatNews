@@ -33,6 +33,10 @@ class StoriesModel: ObservableObject {
         isFetching = false
     }
     
+//    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> Story {
+//        guard let headline = mediaItem.headline, updatedText
+//    }
+    
 //    func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {
 //        // empty the list of stories
 //        stories = [NewsRepresentable]()

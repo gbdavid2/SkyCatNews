@@ -181,3 +181,29 @@ extension Date {
         return CGFloat(newDateMinutes - oldDateMinutes)
     }
 }
+
+extension Calendar {
+    /// Calcualtes the minutes/hours since the creation/modified date
+    /// - returns: A positive value if the creation/modified date is higher than `Date()`. the result will return
+    static func calculateTimeFromDate(fromDate: Date) -> (time: Int, component: Calendar.Component)  {
+        // get the user calendar
+        let calendar = Calendar.current
+        let today = Date()
+        
+        let minutes = calendar.dateComponents([.minute], from: fromDate, to: today)
+        let hours = calendar.dateComponents([.hour], from: fromDate, to: today)
+        let days = calendar.dateComponents([.day], from: fromDate, to: today)
+        
+        let result_minutes = minutes.minute ?? -1
+        let result_hours = hours.hour ?? -1
+        let result_days = days.day ?? -1
+        
+        if result_minutes > 59, result_hours > 59 {
+            return (result_days, .day)
+        } else if result_minutes > 59 {
+            return (result_hours, .hour)
+        } else {
+            return (result_minutes > 0 ? result_minutes : 0 , .minute)
+        }
+    }
+}
