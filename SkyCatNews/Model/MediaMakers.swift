@@ -60,7 +60,7 @@ struct AdvertMaker: MediaMaker {
 
 extension StoryMaker {
     static func sampleStory() -> NewsRepresentable {
-        let storyMaker = StoryMaker()
+        let storyMaker = StoryMockedMaker()
         return storyMaker.createNewsRespresentable(fromMediaItem: MediaItem.sampleMediaItem())
     }
 }

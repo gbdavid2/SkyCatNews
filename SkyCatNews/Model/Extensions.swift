@@ -61,6 +61,7 @@ extension String {
     static var invalidURL = "Invalid static URL"
     static var invalidCreationDate = "Invalid creation date"
     static var invalidServerData = "Invalid server data"
+    static var invalidStoriesArray = "Invalid data array"
     
     // MARK: Accessibility Identifiers
     static var mediaItemImageIdentifier = "media_image_identifier"

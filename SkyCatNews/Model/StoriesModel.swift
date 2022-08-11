@@ -31,6 +31,12 @@ class StoriesModel: ObservableObject {
         isFetching = false
     }
     
+    func getFeaturedStory() -> Story {
+        guard let story = stories.first(where: { $0.getMediaType() == .story }) as? Story else {
+            preconditionFailure(.invalidStoriesArray)
+        }
+        return story
+    }
     
     func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {
         // empty the list of stories

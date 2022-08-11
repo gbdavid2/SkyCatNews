@@ -51,7 +51,7 @@ struct ContentView: View {
     }
     
     var featuredStory: some View {
-        FeaturedStory(story: StoryData.sampleStory, namespace: namespace)
+        FeaturedStory(story: storiesModel.getFeaturedStory(), namespace: namespace)
     }
     var storyDetail: some View {
         StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory))
@@ -63,11 +63,17 @@ struct ContentView: View {
             
             VStack {
                 
-                featuredStory
-                    .shadow(color: Color("Shadow").opacity(0.3),
-                            radius: 30, x: 0, y: 30)
-                    .frame(height: 350)
-                    .padding([.horizontal,.bottom], .generalHorizontal)
+                Group {
+                    if storiesModel.isFetching {
+                        ProgressView()
+                    } else {
+                        featuredStory
+                    }
+                }
+                .shadow(color: Color("Shadow").opacity(0.3),
+                        radius: 30, x: 0, y: 30)
+                .frame(height: 350)
+                .padding([.horizontal,.bottom], .generalHorizontal)
                 
                 Text(verbatim: .newsSection.uppercased())
                     .sectionTitleModifier()
