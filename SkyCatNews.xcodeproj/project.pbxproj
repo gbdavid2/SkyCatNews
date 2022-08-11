@@ -117,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D3D093828A40CEF00E9C77A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2D628BE4289EF60F00C73357 /* Story.swift */,
+				2D628BE6289F09C700C73357 /* Stories.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2D628BD7289EA92600C73357 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +164,7 @@
 				2DB14147289E643D00A32A66 /* Views */,
 				2DDE4C8D28A288B900DA23E1 /* Components */,
 				2DE6A83E289E657500123354 /* Model */,
+				2D3D093828A40CEF00E9C77A /* Data */,
 				2DE6A841289E666400123354 /* Styles */,
 				2D628BD7289EA92600C73357 /* Resources */,
 				2DB14121289D90B900A32A66 /* Assets.xcassets */,
@@ -230,8 +240,6 @@
 				2D56461C28A3A9580017F1C8 /* NavigationModel.swift */,
 				2D628BE2289EC5EA00C73357 /* StoriesModel.swift */,
 				2DDE4C9228A2985A00DA23E1 /* StoryModel.swift */,
-				2D628BE4289EF60F00C73357 /* Story.swift */,
-				2D628BE6289F09C700C73357 /* Stories.swift */,
 				2DE6A83F289E659300123354 /* Extensions.swift */,
 				2D628BD0289E752700C73357 /* PreferenceKeys.swift */,
 				2D628BE8289F102C00C73357 /* DataProviders.swift */,

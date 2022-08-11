@@ -11,6 +11,27 @@ import Foundation
 struct Story: Identifiable, Decodable {
     let id: String
     let headline: String
+    let heroImage: HeroImage
+    let creationDate: String
+    let modifiedDate: String
+    let contents: [StoryContent]
+
+}
+
+struct StoryContent: Decodable {
+    let type: StoryItemType
+    let text: String?
+    let url: String?
+    let accessibilityText: String?
+    
+    enum StoryItemType: String, Decodable {
+            case paragraph, image
+    }
+}
+
+struct HeroImage: Decodable {
+    let imageUrl: String
+    let accessibilityText: String
 }
 
 extension Story {

@@ -25,7 +25,10 @@ final class SkyCatNewsTests: XCTestCase {
         
         XCTAssertEqual(story.id, .storyID)
         XCTAssertEqual(story.headline, .storyHeadline)
-        
+        XCTAssertTrue(story.contents.count > 0)
+        XCTAssertTrue(story.contents.filter { $0.type == .paragraph }.count > 0)
+        XCTAssertTrue(story.contents.filter { $0.type == .image }.count > 0)
+        // other data validation tests could be performed here once we have more data samples from the server.
     }
     
     func testFileProviderCanDecondeBasicStories() {
@@ -69,19 +72,23 @@ final class SkyCatNewsTests: XCTestCase {
         print(URL.newsListURL.absoluteString)
         print(URL.storyURL(storyID: 1).absoluteString)
         print(URL.coffeeURL.absoluteString)
-        print(URL.randomImageURL.absoluteString)
+        print(URL.randomImageURL_small.absoluteString)
+        print(URL.randomImageURL_large.absoluteString)
         
         XCTAssertNotEqual(URL.newsListURL.absoluteString,"")
         XCTAssertNotEqual(URL.storyURL(storyID: 1).absoluteString,"")
         XCTAssertNotEqual(URL.coffeeURL.absoluteString,"")
-        XCTAssertNotEqual(URL.randomImageURL.absoluteString,"")
+        XCTAssertNotEqual(URL.randomImageURL_small.absoluteString,"")
+        XCTAssertNotEqual(URL.randomImageURL_large.absoluteString,"")
     }
     
     // MARK: Network provider tests
     
     func testCanGetRandomImageFromNetwork() async {
-        let image = AsyncImage(url: URL.randomImageURL)
-        XCTAssertNotNil(image)
+        let image1 = AsyncImage(url: URL.randomImageURL_large)
+        let image2 = AsyncImage(url: URL.randomImageURL_small)
+        XCTAssertNotNil(image1)
+        XCTAssertNotNil(image2)
     }
     
     /// Although this test is not directly testing the `Story` or `Stories` structures (which are the main structures for our app), We are aiming to test our `NetworkProvider` with a real network connection to a test server. In this case our test will succeed if `networkProvider.parseData()` can successfully connect to the provided `URL` and can successfully retrieve the data from it and parse it. In future implemenations we can simply modify the test to retrieve a `story` from the server using the same `networkProvider` but giving it a different `URL`
