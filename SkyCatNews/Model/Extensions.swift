@@ -12,6 +12,9 @@ extension String {
     // MARK: UI Strings
     static var skyTitle = "Sky Cat News (offline)"
     static var newsSection = "Latest"
+    static var created = "Created"
+    static var updated = "Updated"
+    static var ago = "ago"
     
     // MARK: UI - Geometry Reader
     static var scroll = "scroll"
@@ -31,6 +34,8 @@ extension String {
     static var storyID = "1"
     static var storyHeadline = "Cat story headline"
     static var storyTeaserText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    static var creationDate1 = "2020-11-18T00:00:00Z"
+    static var modifiedDate1 = "2020-11-19T00:00:00Z"
     
     // MARK: URL Common Components
     static var defaultScheme = "https"
@@ -49,8 +54,9 @@ extension String {
     static var newsPath = "/news-list"
     static var storyPath = "/story"
     
-    // MARK: URL Messages
+    // MARK: Error Messages
     static var invalidURL = "Invalid static URL"
+    static var invalidCreationDate = "Invalid creation date"
     
     // MARK: Accessibility Identifiers
     static var mediaItemImageIdentifier = "media_image_identifier"
@@ -58,7 +64,7 @@ extension String {
     
     // MARK: Accessibility Labels
     static var mediaItemImage = "Media Item Image"
-
+    
 }
 
 extension Double {
@@ -91,6 +97,14 @@ extension CGFloat {
 }
 
 extension URL {
+    
+    // MARK: External URL Builder
+    init(mediaString string: String) {
+        guard let url = URL(string: "\(string)") else {
+            preconditionFailure("\(String.invalidURL): \(string)")
+        }
+        self = url
+    }
     
     // MARK: Live Server URLs
     
@@ -136,13 +150,34 @@ extension URL {
         return urlComponents.checkedURL
     }
     
+    
+    
 }
 
 extension URLComponents {
+    
     var checkedURL: URL {
         guard let url = self.url else {
             preconditionFailure("\(String.invalidURL) \(String(describing: self.url?.absoluteString))")
         }
         return url
+    }
+}
+
+extension Date {
+    /// Converts the UTC string given by the API into a **Date** using a UTC date formatter
+    static func convert(fromString date_utc: String) -> Date? {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+        return formatter.date(from: date_utc)
+    }
+    
+    static func minutesBetweenDates(_ oldDate: Date, _ newDate: Date) -> CGFloat {
+        //get both times sinces refrenced date and divide by 60 to get minutes
+        let newDateMinutes = newDate.timeIntervalSinceReferenceDate/60
+        let oldDateMinutes = oldDate.timeIntervalSinceReferenceDate/60
+
+        //then return the difference
+        return CGFloat(newDateMinutes - oldDateMinutes)
     }
 }

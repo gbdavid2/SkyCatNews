@@ -102,6 +102,41 @@ final class SkyCatNewsTests: XCTestCase {
         XCTAssertNotEqual(coffee.id, 0)
     }
     
+    // MARK: Date tests
+    func testCanConvertDateFromUTCString() {
+        let validDate1 = Date.convert(fromString: .creationDate1)
+        let validDate2 = Date.convert(fromString: .modifiedDate1)
+        print(validDate1 ?? "")
+        XCTAssertNotNil(validDate1)
+        XCTAssertNotNil(validDate2)
+    }
+    
+    func testCanCalcualeHoursForDate() {
+        guard let validDate1 = Date.convert(fromString: .creationDate1), let validDate2 = Date.convert(fromString: .modifiedDate1) else {
+            XCTFail("Failed to convert strings to dates - test cannot proceed")
+            return
+        }
+        
+        // attempt to calculate minutes for oldDate first then newDate
+       let result1 = Date.minutesBetweenDates(validDate1, validDate2)
+        print("Result time is \(result1)")
+        XCTAssertTrue(result1 > 0)
+        
+        // attempt to calcualte minutes for newDate first then oldDate
+        let result2 = Date.minutesBetweenDates(validDate2, validDate1)
+         print("Result time is \(result2)")
+         XCTAssertTrue(result2 < 0)
+    }
+    
+    // MARK: Story tests
+    func testAdvertCannotChangeType() {
+        var newsRepresentable: NewsRepresentable
+        newsRepresentable = Advert(url: .randomImageURL_small)
+        XCTAssertEqual(newsRepresentable.getMediaType(), .advert)
+    }
+    
+
+    
     // MARK: Reusable functions
     
     func fetchLocalStoriesArray() -> StoriesDataFeed {
