@@ -14,11 +14,11 @@ struct StoryData: Identifiable, Decodable {
     let heroImage: HeroImage
     let creationDate: String
     let modifiedDate: String
-    let contents: [StoryContent]
+    let contents: [StoryDataContent]
 
 }
 
-struct StoryContent: Decodable {
+struct StoryDataContent: Decodable {
     let type: StoryItemType
     let text: String?
     let url: String?
