@@ -14,6 +14,9 @@ extension String {
     static var newsSection = "Latest"
     static var created = "Created"
     static var updated = "Updated"
+    static var minutes = "m"
+    static var hours = "h"
+    static var days = "d"
     static var ago = "ago"
     
     // MARK: UI - Geometry Reader
@@ -57,6 +60,7 @@ extension String {
     // MARK: Error Messages
     static var invalidURL = "Invalid static URL"
     static var invalidCreationDate = "Invalid creation date"
+    static var invalidServerData = "Invalid server data"
     
     // MARK: Accessibility Identifiers
     static var mediaItemImageIdentifier = "media_image_identifier"
@@ -179,6 +183,23 @@ extension Date {
 
         //then return the difference
         return CGFloat(newDateMinutes - oldDateMinutes)
+    }
+    
+    /// - returns: the  most recent __updateDate__ by analysing the most current date between `creationDate` and `modifiedDate`. At least `date1` must be given.
+    static func calculateMostRecentDate(date1: String, date2: String) -> Date {
+        
+        let convertedDate1 = Date.convert(fromString: date1)
+        let convertedDate2 = Date.convert(fromString: date2)
+        
+        guard let resultConvertedDate1 = convertedDate1 else {
+            preconditionFailure(.invalidCreationDate)
+        }
+        
+        if let resultConvertedDate2 = convertedDate2, Date.minutesBetweenDates(resultConvertedDate1, resultConvertedDate2) > 0 {
+            return resultConvertedDate2
+        } else {
+            return resultConvertedDate1
+        }
     }
 }
 

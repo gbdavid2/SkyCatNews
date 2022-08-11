@@ -76,7 +76,15 @@ extension TimeReportable {
     /// - returns: The minutes or hours (if more than 60m) that this story was updated based on the client timezone.
     private func getUpdatedTime() -> String {
         let result = Calendar.calculateTimeFromDate(fromDate: updated)
-        let component = result.component == .minute ? "m" : "h"
+        var component = ""
+        switch result.component {
+        case .minute:
+            component = "m"
+        case .hour:
+            component = "h"
+        default:
+            component = "d"
+        }
         return "\(result.time) \(component)"
     }
     
@@ -84,24 +92,6 @@ extension TimeReportable {
         return "\(getUpdatedText()) \(getUpdatedTime()) \(String.ago)"
     }
 
-    func getUpdatedDate(creationDate: String, modifiedDate: String) -> (updatedDate: Date, creationDateOnly: Bool) {
-        // by default we assume it is not creationDateOnly if modifiedDate has a value
-        let creationDateOnly = modifiedDate == ""
-        
-        let creationDate = Date.convert(fromString: creationDate)
-        let modifiedDate = Date.convert(fromString: modifiedDate)
-        
-        guard let resultCreationDate = creationDate else {
-            preconditionFailure(.invalidCreationDate)
-        }
-        
-        if let resultModifiedDate = modifiedDate, Date.minutesBetweenDates(resultCreationDate, resultModifiedDate) > 0 {
-            return (resultModifiedDate, false)
-        } else {
-            return (resultCreationDate, true)
-        }
-    }
-    
     
 }
 

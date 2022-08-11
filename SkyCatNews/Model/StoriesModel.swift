@@ -34,7 +34,10 @@ class StoriesModel: ObservableObject {
     }
     
 //    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> Story {
-//        guard let headline = mediaItem.headline, updatedText
+//        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText, let teaserImage = mediaItem.teaserImage else {
+//            preconditionFailure(.invalidServerData)
+//        }
+//        Story(headline: headline, updated: <#T##Date#>, creationDateOnly: <#T##Bool#>, teaserText: <#T##String#>, teaserImage: <#T##NewsImage#>)
 //    }
     
 //    func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {

@@ -154,6 +154,20 @@ final class SkyCatNewsTests: XCTestCase {
         XCTAssertEqual(result5.component, .minute)
     }
     
+    func testCalculateMostRecentDate() {
+        let testDates = getTestDates()
+        let result1 = Date.calculateMostRecentDate(date1: .creationDate1, date2: .modifiedDate1)
+        XCTAssertTrue(result1 == testDates.validDate2)
+        
+        let result2 = Date.calculateMostRecentDate(date1: .modifiedDate1, date2: .creationDate1)
+        XCTAssertTrue(result2 == testDates.validDate2)
+        
+        let date3 = "2022-05-18T00:00:00Z"
+        let date3Converted = Date.convert(fromString: date3)
+        let result3 = Date.calculateMostRecentDate(date1: .modifiedDate1, date2: date3)
+        XCTAssertTrue(result3 == date3Converted)
+    }
+    
     // MARK: Story tests
     func testAdvertCannotChangeType() {
         var newsRepresentable: NewsRepresentable
