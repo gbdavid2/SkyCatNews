@@ -14,7 +14,7 @@ class StoriesModel: ObservableObject {
     @Published var isFetching: Bool = true
     @Published var title: String = .skyTitle
 
-    @Published var stories = [NewsRepresentable]()
+    @Published var media = [NewsRepresentable]()
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -26,21 +26,29 @@ class StoriesModel: ObservableObject {
         let storiesData: StoriesDataFeed? = await networkProvider.parseData()
         if let result = storiesData {
             title = result.title
-            stories = loadStories(fromData: result.data)
+            media = loadMedia(fromData: result.data)
         }
         isFetching = false
     }
     
     func getFeaturedStory() -> Story {
-        guard let story = stories.first(where: { $0.getMediaType() == .story }) as? Story else {
+        guard let story = media.first(where: { $0.getMediaType() == .story }) as? Story else {
             preconditionFailure(.invalidStoriesArray)
         }
         return story
     }
     
-    func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {
+    func getStories() -> [Story] {
+        let mediaStories = media.filter { $0.getMediaType() == .story }
+        guard let resultMediaStores = mediaStories as? [Story] else {
+            preconditionFailure(.invalidStoriesArray)
+        }
+        return resultMediaStores
+    }
+    
+    func loadMedia(fromData data: [MediaItem]) -> [NewsRepresentable] {
         // empty the list of stories
-        stories = [NewsRepresentable]()
+        media = [NewsRepresentable]()
 
         for mediaData in data {
             let story: NewsRepresentable
@@ -56,10 +64,10 @@ class StoriesModel: ObservableObject {
             }
             
             story = mediaMaker.createNewsRespresentable(fromMediaItem: mediaData)
-            stories.append(story)
+            media.append(story)
 
         }
-        return stories
+        return media
   
     }
 }

@@ -9,23 +9,24 @@ import SwiftUI
 
 struct StoriesViewItem: View {
     
-    var story: NewsRepresentable
+    var story: Story
     
     var body: some View {
         HStack(spacing: 15) {
-            MediaItemImage(url: URL.randomImageURL_small)
+            MediaItemImage(url: story.teaserImage.imageURL)
+                .accessibilityValue(story.teaserImage.accessibilityText)
                 .frame(width: 50, height:50)
 
             VStack(alignment: .leading) {
                 HStack {
-                    Text(String.storyHeadline)
+                    Text(story.headline)
                         .font(.headline)
                     Spacer()
-                    Text("36m ago")
+                    Text(story.getShortUpdateText())
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
-                Text(String.storyTeaserText)
+                Text(story.teaserText)
                     .lineLimit(2)
             }
         }
@@ -37,7 +38,7 @@ struct StoriesViewItem: View {
 struct StoriesViewItem_Previews: PreviewProvider {
     
     static var previews: some View {
-        StoriesViewItem(story: StoryMaker.sampleStory())
+        StoriesViewItem(story: StoryMaker.sampleStory() as! Story)
     }
 }
 

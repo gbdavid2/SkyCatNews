@@ -18,7 +18,7 @@ struct StoriesView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 400, alignment: .center)
             } else {
-                ForEach (Array(storiesModel.stories.enumerated()), id: \.offset) {
+                ForEach (Array(storiesModel.getStories().enumerated()), id: \.offset) {
                     index, story in
                     if index != 0 { Divider() }
                     StoriesViewItem(story: story)

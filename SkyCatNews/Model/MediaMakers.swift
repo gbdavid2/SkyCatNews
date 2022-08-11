@@ -69,14 +69,14 @@ extension StoryMaker {
 
 struct StoryMockedMaker: MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
-        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText else {
+        guard let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate else {
             preconditionFailure(.invalidServerData)
         }
         
         let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
         let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
         
-        let story = Story(headline: headline, updated: updated, teaserText: teaserText, teaserImage: teaserImage)
+        let story = Story(headline: .storyHeadline, updated: updated, teaserText: .storyTeaserText, teaserImage: teaserImage)
         return story
     }
 }

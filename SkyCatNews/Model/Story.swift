@@ -81,6 +81,10 @@ extension TimeReportable {
     func getFullUpdateText() -> String {
         return "\(String.updated) \(getUpdatedTime()) \(String.ago)"
     }
+    
+    func getShortUpdateText() -> String {
+        return "\(getUpdatedTime()) \(String.ago)"
+    }
 
     
 }
