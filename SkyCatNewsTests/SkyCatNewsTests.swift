@@ -19,7 +19,7 @@ final class SkyCatNewsTests: XCTestCase {
     // MARK: FileProvider tests
     
     func testFileProviderCanDecodeBasicStoryProperties() {
-        let story: Story? = storyProvider.parseData()
+        let story: StoryData? = storyProvider.parseData()
         
         guard let story = story else { return XCTFail("Test error creating story") }
         
@@ -32,7 +32,7 @@ final class SkyCatNewsTests: XCTestCase {
     }
     
     func testFileProviderCanDecondeBasicStories() {
-        let stories: Stories = fetchLocalStoriesArray()
+        let stories: StoriesDataFeed = fetchLocalStoriesArray()
 
         XCTAssertNotEqual(stories.title, .skyTitle)
         XCTAssertNotEqual(stories.title, "")
@@ -40,7 +40,7 @@ final class SkyCatNewsTests: XCTestCase {
     
     /// All `MediaItem` entries should have a `type` value decoded.
     func testCanDecodeMediaItemArray() {
-        let stories: Stories = fetchLocalStoriesArray()
+        let stories: StoriesDataFeed = fetchLocalStoriesArray()
         
         stories.data.forEach { print("id:\($0.type)") }
         
@@ -49,7 +49,7 @@ final class SkyCatNewsTests: XCTestCase {
     }
     
     func testMediaItem_StoryHasTeaserImage() {
-        let stories: Stories = fetchLocalStoriesArray()
+        let stories: StoriesDataFeed = fetchLocalStoriesArray()
         // check that a story and a web link exist to proceed with this test
         let dataStories = stories.data.filter { $0.type == .story }
         let webLinks = stories.data.filter { $0.type == .weblink }
@@ -104,12 +104,12 @@ final class SkyCatNewsTests: XCTestCase {
     
     // MARK: Reusable functions
     
-    func fetchLocalStoriesArray() -> Stories {
-        let stories: Stories? = storiesProvider.parseData()
+    func fetchLocalStoriesArray() -> StoriesDataFeed {
+        let stories: StoriesDataFeed? = storiesProvider.parseData()
         
         guard let stories = stories else {
             XCTFail("Test error creating stories")
-            return Stories(title: "", data: [MediaItem]()) /// this value won't be returned because `XCTFail` will stop execution - but we still need to decalre this so the compiler accepts it.
+            return StoriesDataFeed(title: "", data: [MediaItem]()) /// this value won't be returned because `XCTFail` will stop execution - but we still need to decalre this so the compiler accepts it.
         }
         
         return stories

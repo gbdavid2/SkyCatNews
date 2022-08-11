@@ -12,7 +12,7 @@ class StoriesModel: ObservableObject {
     var networkProvider: DecodeProviding
     
     // TODO: does this direct dependency break the Dependency-inversion principle?
-    var storiesData: Stories?
+    var storiesData: StoriesDataFeed?
     @Published var isFetching: Bool = true
     @Published var title: String = .skyTitle
     @Published var stories = [MediaItem]()

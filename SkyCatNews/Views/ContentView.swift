@@ -51,10 +51,10 @@ struct ContentView: View {
     }
     
     var featuredStory: some View {
-        FeaturedStory(story: Story.sampleStory, namespace: namespace)
+        FeaturedStory(story: StoryData.sampleStory, namespace: namespace)
     }
     var storyDetail: some View {
-        StoryView(namespace: namespace, story:  .constant(Story.sampleStory))
+        StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory))
     }
     
     var content: some View {

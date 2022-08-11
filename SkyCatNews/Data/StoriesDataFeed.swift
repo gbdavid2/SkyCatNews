@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Stories: Decodable {
+struct StoriesDataFeed: Decodable {
     let title: String
     let data: [MediaItem]
         
@@ -52,7 +52,7 @@ extension MediaItem {
     /// `sampleMediaItem` is meant to be used for debug purposes only, therefore the returned item is based on a forced unwrapping
     static func sampleMediaItem() -> MediaItem {
         let fileProvider = FileProvider(filename: .sampleList)
-        let items: Stories? = fileProvider.parseData()
+        let items: StoriesDataFeed? = fileProvider.parseData()
         return items!.data.first!
     }
 }

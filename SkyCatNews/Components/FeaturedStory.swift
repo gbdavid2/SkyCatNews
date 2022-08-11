@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FeaturedStory: View {
     
-    var story: Story
+    var story: StoryData
     var namespace: Namespace.ID
     
     @EnvironmentObject var model: NavigationModel
@@ -68,8 +68,8 @@ struct FeaturedStory_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
         Group {
-            FeaturedStory(story: Story.sampleStory, namespace: namespace)
-            FeaturedStory(story: Story.sampleStory, namespace: namespace)
+            FeaturedStory(story: StoryData.sampleStory, namespace: namespace)
+            FeaturedStory(story: StoryData.sampleStory, namespace: namespace)
                 .environment(\.sizeCategory, .accessibilityLarge)
         }.shadow(color: Color("Shadow").opacity(0.3),
                  radius: 30, x: 0, y: 30)

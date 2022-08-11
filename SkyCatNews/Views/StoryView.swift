@@ -10,7 +10,7 @@ import SwiftUI
 struct StoryView: View {
     
     var namespace: Namespace.ID
-    @Binding var story: Story
+    @Binding var story: StoryData
     var isAnimated = true
     
     @State var viewState: CGSize = .zero
@@ -216,7 +216,7 @@ struct StoryView: View {
 struct StoryView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        StoryView(namespace: namespace, story: .constant(Story.sampleStory))
+        StoryView(namespace: namespace, story: .constant(StoryData.sampleStory))
             .environmentObject(NavigationModel())
     }
 }

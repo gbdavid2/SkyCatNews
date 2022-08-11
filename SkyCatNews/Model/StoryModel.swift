@@ -10,7 +10,7 @@ import SwiftUI
 
 class StoryModel: ObservableObject {
     
-    var storyData: Story?
+    var storyData: StoryData?
     var networkProvider: DecodeProviding
     
     @Published var isFetching: Bool = true

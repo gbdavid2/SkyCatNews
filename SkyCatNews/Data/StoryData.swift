@@ -8,7 +8,7 @@
 import Foundation
 
 /// `Story` holds data about each news item and it's contents
-struct Story: Identifiable, Decodable {
+struct StoryData: Identifiable, Decodable {
     let id: String
     let headline: String
     let heroImage: HeroImage
@@ -34,11 +34,11 @@ struct HeroImage: Decodable {
     let accessibilityText: String
 }
 
-extension Story {
+extension StoryData {
     /// `sampleMediaItem` is meant to be used for debug purposes only, therefore the returned item is based on a forced unwrapping
-    static var sampleStory: Story {
+    static var sampleStory: StoryData {
         let fileProvider = FileProvider(filename: .sampleStory)
-        let item: Story? = fileProvider.parseData()
+        let item: StoryData? = fileProvider.parseData()
         return item!
     }
 }
