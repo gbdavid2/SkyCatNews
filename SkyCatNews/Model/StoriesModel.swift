@@ -13,9 +13,8 @@ class StoriesModel: ObservableObject {
     
     @Published var isFetching: Bool = true
     @Published var title: String = .skyTitle
-    
-    @Published var stories = [MediaItem]()
-    //@Published var stories = [NewsRepresentable]()
+
+    @Published var stories = [NewsRepresentable]()
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -27,48 +26,37 @@ class StoriesModel: ObservableObject {
         let storiesData: StoriesDataFeed? = await networkProvider.parseData()
         if let result = storiesData {
             title = result.title
-            stories = result.data
-            //stories = loadStories(fromData: result.data)
+            stories = loadStories(fromData: result.data)
         }
         isFetching = false
     }
     
-//    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> Story {
-//        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText, let teaserImage = mediaItem.teaserImage else {
-//            preconditionFailure(.invalidServerData)
-//        }
-//        Story(headline: headline, updated: <#T##Date#>, creationDateOnly: <#T##Bool#>, teaserText: <#T##String#>, teaserImage: <#T##NewsImage#>)
-//    }
     
-//    func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {
-//        // empty the list of stories
-//        stories = [NewsRepresentable]()
-//
-//        for mediaData in data {
-//            let story: NewsRepresentable
-//            //stories.append(story)
-//
-//
-//
-////            let url = URL(mediaString: storyData.url ?? "")
-////            switch storyData.type {
-////            case .advert:
-////                story = Advert(url: url)
-////            case .story:
-////
-////                guard let headline = storyData.headline, updated =  else { break }
-////
-////                story = NewsRepresentable.create(fromData: storyData)
-////            case .weblink:
-////                story = Advert(url: url)
-////            }
-//
-//        }
-//        return stories
-  
- //   }
-}
+    func loadStories(fromData data: [MediaItem]) -> [NewsRepresentable] {
+        // empty the list of stories
+        stories = [NewsRepresentable]()
 
+        for mediaData in data {
+            let story: NewsRepresentable
+            let mediaMaker: MediaMaker
+
+            switch mediaData.type {
+            case .advert:
+                mediaMaker = AdvertMaker()
+            case .story:
+                mediaMaker = StoryMaker()
+            case .weblink:
+               mediaMaker = WebLinkMaker()
+            }
+            
+            story = mediaMaker.createNewsRespresentable(fromMediaItem: mediaData)
+            stories.append(story)
+
+        }
+        return stories
+  
+    }
+}
 
 extension StoriesModel {
     static var localStories = StoriesModel(networkProvider: FileProvider(filename: .sampleList))

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D3D093A28A4F96100E9C77A /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3D093928A4F96100E9C77A /* Story.swift */; };
+		2D3D093C28A5737B00E9C77A /* MediaMakers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3D093B28A5737B00E9C77A /* MediaMakers.swift */; };
 		2D56461528A2D28C0017F1C8 /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D56461428A2D28C0017F1C8 /* TextModifiers.swift */; };
 		2D56461728A2D45E0017F1C8 /* BackgroundStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D56461628A2D45E0017F1C8 /* BackgroundStyles.swift */; };
 		2D56461928A2FB6A0017F1C8 /* FeaturedStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D56461828A2FB6A0017F1C8 /* FeaturedStory.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		2D3D093928A4F96100E9C77A /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		2D3D093B28A5737B00E9C77A /* MediaMakers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMakers.swift; sourceTree = "<group>"; };
 		2D56461428A2D28C0017F1C8 /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		2D56461628A2D45E0017F1C8 /* BackgroundStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyles.swift; sourceTree = "<group>"; };
 		2D56461828A2FB6A0017F1C8 /* FeaturedStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedStory.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				2DDE4C9228A2985A00DA23E1 /* StoryModel.swift */,
 				2D3D093928A4F96100E9C77A /* Story.swift */,
 				2DE6A83F289E659300123354 /* Extensions.swift */,
+				2D3D093B28A5737B00E9C77A /* MediaMakers.swift */,
 				2D628BE8289F102C00C73357 /* DataProviders.swift */,
 				2D628BEC289FA4B200C73357 /* ErrorProviders.swift */,
 				2D628BD0289E752700C73357 /* PreferenceKeys.swift */,
@@ -404,6 +407,7 @@
 				2DB14120289D90B800A32A66 /* ContentView.swift in Sources */,
 				2D56461528A2D28C0017F1C8 /* TextModifiers.swift in Sources */,
 				2DDE4C9128A295DB00DA23E1 /* StoriesViewItem.swift in Sources */,
+				2D3D093C28A5737B00E9C77A /* MediaMakers.swift in Sources */,
 				2D3D093A28A4F96100E9C77A /* Story.swift in Sources */,
 				2DB1411E289D90B800A32A66 /* SkyCatNewsApp.swift in Sources */,
 				2DE6A843289E668900123354 /* AnimatableFontModifier.swift in Sources */,

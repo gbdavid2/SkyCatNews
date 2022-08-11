@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StoriesViewItem: View {
     
-    var story: MediaItem
+    var story: NewsRepresentable
     
     var body: some View {
         HStack(spacing: 15) {
@@ -35,8 +35,9 @@ struct StoriesViewItem: View {
 }
 
 struct StoriesViewItem_Previews: PreviewProvider {
+    
     static var previews: some View {
-        StoriesViewItem(story: MediaItem.sampleMediaItem())
+        StoriesViewItem(story: StoryMaker.sampleStory())
     }
 }
 

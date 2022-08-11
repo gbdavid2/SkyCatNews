@@ -15,7 +15,6 @@ struct Story: NewsRepresentable, TimeReportable {
 
     let headline: String
     var updated: Date
-    var creationDateOnly: Bool
     let teaserText: String
     let teaserImage: NewsImage
     // let heroImage: NewsImage
@@ -40,7 +39,6 @@ struct NewsParagraph: StoryRepresentable {
 struct WebLink: NewsRepresentable, TimeReportable {
     let headline: String
     var updated: Date
-    var creationDateOnly: Bool
     let url: URL
     let teaserImage: NewsImage
     
@@ -62,16 +60,8 @@ protocol TimeReportable {
     /// `updated` is a Date that will constantly keep updating when we refresh and retrieve data from the server. We will either the creation date or the modified date (if we have a modified date value and this value is later than the creation date)
     var updated: Date { get set }
     
-    /// If we have a modified date value and the value is later than the creation date, then `creationDateOnly = false` otherwise, it should be set to `true`
-    var creationDateOnly: Bool { get set }
-    
 }
 extension TimeReportable {
-    
-    /// - returns: Either "Created" or "Updated" based on the contents of the variable `creationDateOnly`
-    private func getUpdatedText() -> String {
-        return creationDateOnly ? .created: .updated
-    }
     
     /// - returns: The minutes or hours (if more than 60m) that this story was updated based on the client timezone.
     private func getUpdatedTime() -> String {
@@ -85,11 +75,11 @@ extension TimeReportable {
         default:
             component = "d"
         }
-        return "\(result.time) \(component)"
+        return "\(result.time)\(component)"
     }
     
     func getFullUpdateText() -> String {
-        return "\(getUpdatedText()) \(getUpdatedTime()) \(String.ago)"
+        return "\(String.updated) \(getUpdatedTime()) \(String.ago)"
     }
 
     

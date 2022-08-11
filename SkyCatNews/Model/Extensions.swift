@@ -12,7 +12,6 @@ extension String {
     // MARK: UI Strings
     static var skyTitle = "Sky Cat News (offline)"
     static var newsSection = "Latest"
-    static var created = "Created"
     static var updated = "Updated"
     static var minutes = "m"
     static var hours = "h"
