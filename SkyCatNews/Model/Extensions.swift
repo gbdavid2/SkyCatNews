@@ -38,6 +38,7 @@ extension String {
     static var storyTeaserText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     static var creationDate1 = "2020-11-18T00:00:00Z"
     static var modifiedDate1 = "2020-11-19T00:00:00Z"
+    static var accessibilityText = "Image accessibility text"
     
     // MARK: URL Common Components
     static var defaultScheme = "https"

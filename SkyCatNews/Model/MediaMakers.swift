@@ -64,3 +64,45 @@ extension StoryMaker {
         return storyMaker.createNewsRespresentable(fromMediaItem: MediaItem.sampleMediaItem())
     }
 }
+
+// MARK: Mocked makers
+
+struct StoryMockedMaker: MediaMaker {
+    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
+        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText else {
+            preconditionFailure(.invalidServerData)
+        }
+        
+        let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
+        let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
+        
+        let story = Story(headline: headline, updated: updated, teaserText: teaserText, teaserImage: teaserImage)
+        return story
+    }
+}
+
+struct WebLinkMockedMaker: MediaMaker {
+    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
+        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate else {
+            preconditionFailure(.invalidServerData)
+        }
+        
+        let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
+        let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
+        let webURL = URL(mediaString: URL.randomImageURL_large.absoluteString)
+        
+        
+        let weblink = WebLink(headline: headline, updated: updated, url: webURL, teaserImage: teaserImage)
+        return weblink
+    }
+}
+
+struct AdvertMockedMaker: MediaMaker {
+    func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
+        
+        let advertURL = URL(mediaString: URL.randomImageURL_large.absoluteString)
+
+        let advert = Advert(url: advertURL)
+        return advert
+    }
+}

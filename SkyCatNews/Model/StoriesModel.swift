@@ -42,11 +42,11 @@ class StoriesModel: ObservableObject {
 
             switch mediaData.type {
             case .advert:
-                mediaMaker = AdvertMaker()
+                mediaMaker = AdvertMockedMaker()
             case .story:
-                mediaMaker = StoryMaker()
+                mediaMaker = StoryMockedMaker()
             case .weblink:
-               mediaMaker = WebLinkMaker()
+               mediaMaker = WebLinkMockedMaker()
             }
             
             story = mediaMaker.createNewsRespresentable(fromMediaItem: mediaData)
