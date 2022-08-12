@@ -23,7 +23,7 @@ struct Story: NewsRepresentable, TimeReportable {
     }
 }
 
-struct DetailedStory: NewsRepresentable {
+struct DetailedStory: NewsRepresentable, TimeReportable {
     let id: Int
     let headline: String
     var updated: Date

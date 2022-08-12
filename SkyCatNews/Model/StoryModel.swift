@@ -16,7 +16,8 @@ class StoryModel: ObservableObject {
     
     @Published var isFetching: Bool = true
     
-    @Published var detailedStory: DetailedStory?
+    // FIXME: At initialisation the model is creating a mock story - this should be changed when live server is ready
+    @Published var detailedStory = DetailedStoryMockedMaker.createDetailedStoryRespresentable()
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -33,8 +34,11 @@ class StoryModel: ObservableObject {
     }
     
     func loadStory(fromData data: StoryData) -> DetailedStory {
-        let storyMaker = DetailedStoryMaker()
-        return storyMaker.createDetailedStoryRespresentable(fromStoryData: data)
+       return DetailedStoryMockedMaker.createDetailedStoryRespresentable()
+        // FIXME: Use details below instead when live server is ready
+        // let storyMaker = DetailedStoryMaker()
+       // return storyMaker.createDetailedStoryRespresentable(fromStoryData: data)
+        
     }
     
     

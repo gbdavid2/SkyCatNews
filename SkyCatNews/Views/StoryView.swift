@@ -33,7 +33,6 @@ struct StoryView: View {
             .background(Color("Background"))
             .mask(RoundedRectangle(cornerRadius: appear[0] ? 0 : 30))
             .mask(RoundedRectangle(cornerRadius: viewState.width / 3))
-            //.modifier(OutlineModifier(cornerRadius: viewState.width / 3))
             .shadow(color: Color("Shadow").opacity(0.5), radius: 30, x: 0, y: 10)
             .scaleEffect(-viewState.width/500 + 1)
             .background(Color("Shadow").opacity(viewState.width / 500))
@@ -62,7 +61,10 @@ struct StoryView: View {
         .onChange(of: navigationModel.showDetail) { show in
             fadeOut()
         }
-        .task {
+        .task(id: storyModel.isFetching) {
+            await storyModel.loadStory()
+        }
+        .refreshable {
             await storyModel.loadStory()
         }
     }
@@ -78,12 +80,13 @@ struct StoryView: View {
             .frame(maxWidth: .infinity)
             .frame(height: scrollY > 0 ? 500 + scrollY: 500)
             .background(
-                AsyncImage(url: URL.randomImageURL_large) { image in
+                AsyncImage(url: storyModel.detailedStory.heroImage.imageURL) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .matchedGeometryEffect(id: "background_image", in: namespace)
                         .offset(y: scrollY > 0 ? -scrollY:0)
+                        .accessibilityValue(storyModel.detailedStory.heroImage.accessibilityText)
                 } placeholder: {
                     ProgressView()
                 }
@@ -95,7 +98,7 @@ struct StoryView: View {
             )
             .overlay(
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(String.storyHeadline)
+                    Text(storyModel.detailedStory.headline)
                         .font(.title).bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.primary)
@@ -106,7 +109,7 @@ struct StoryView: View {
                         .opacity(appear[1] ? 1 : 0)
                     
                     HStack {
-                        Text("Updated 8 min ago")
+                        Text(storyModel.detailedStory.getFullUpdateText())
                             .font(.footnote.weight(.medium))
                             .foregroundStyle(.secondary)
                             .matchedGeometryEffect(id: "time", in: namespace)
@@ -114,45 +117,48 @@ struct StoryView: View {
                     .opacity(appear[1] ? 1 : 0)
                     .accessibilityElement(children: .combine)
                 }
-                .padding(20)
-                .padding(.vertical, 10)
-                .background(
-                    Rectangle()
-                        .fill(.ultraThinMaterial)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                        .cornerRadius(30)
-                        .blur(radius: 30)
-                        .opacity(appear[0] ? 0 : 1)
-                )
-                .background(
-                    Rectangle()
-                        .fill(.ultraThinMaterial)
-                        .backgroundStyle(cornerRadius: 30)
-                        .opacity(appear[0] ? 1 : 0)
-                )
-                .offset(y: scrollY > 0 ? -scrollY * 1.8 : 0)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .offset(y: 100)
-                .padding(20)
+                    .padding(20)
+                    .padding(.vertical, 10)
+                    .background(
+                        Rectangle()
+                            .fill(.ultraThinMaterial)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .cornerRadius(30)
+                            .blur(radius: 30)
+                            .opacity(appear[0] ? 0 : 1)
+                    )
+                    .background(
+                        Rectangle()
+                            .fill(.ultraThinMaterial)
+                            .backgroundStyle(cornerRadius: 30)
+                            .opacity(appear[0] ? 1 : 0)
+                    )
+                    .offset(y: scrollY > 0 ? -scrollY * 1.8 : 0)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    .offset(y: 100)
+                    .padding(20)
             )
         }
         .frame(height: 500)
     }
     
     var sectionsSection: some View {
-        VStack(spacing: 16) {
-            
-            Text(String.storyTeaserText)
-            Divider()
-            Text("Image")
-            Divider()
-            Text(String.storyTeaserText)
-            Divider()
-            Text("Image")
-            Divider()
-            Text(String.storyTeaserText)
-
+        VStack {
+                ForEach (Array(storyModel.detailedStory.content.enumerated()), id: \.offset) {
+                    index, storyItem in
+                    if index != 0 { Divider() }
+                    
+                    if let paragraph = storyItem as? NewsParagraph {
+                        Text(paragraph.text)
+                    }
+                    if let theImage = storyItem as? NewsImage {
+                        Text("Image goes here")
+                        //NewsImageView(image: theImage)
+                    }
+                
+            }
         }
+
         .padding(20)
         .background(.ultraThinMaterial)
         .backgroundStyle(cornerRadius: 30)
@@ -212,6 +218,20 @@ struct StoryView: View {
         }
         withAnimation(.closeStory.delay(0.2)) {
             navigationModel.showDetail = false
+        }
+    }
+}
+
+struct NewsImageView: View {
+    var theImage: NewsImage
+    var body: some View {
+        AsyncImage(url: theImage.imageURL) { image in
+            image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .accessibilityValue(theImage.accessibilityText)
+        } placeholder: {
+            ProgressView()
         }
     }
 }

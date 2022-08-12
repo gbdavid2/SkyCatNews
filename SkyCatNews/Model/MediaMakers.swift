@@ -148,3 +148,33 @@ struct DetailedStoryMaker {
         return NewsParagraph(text: text)
     }
 }
+
+
+
+struct DetailedStoryMockedMaker {
+    static func createDetailedStoryRespresentable() -> DetailedStory {
+        
+        let convertedID = 1
+        let heroImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
+        var content = [StoryRepresentable]()
+        
+        content.append(createParagraphContent())
+        content.append(createImageContent())
+        content.append(createParagraphContent())
+        content.append(createParagraphContent())
+        content.append(createImageContent())
+        content.append(createParagraphContent())
+        
+        let story = DetailedStory(id: convertedID, headline: .storyHeadline, updated: Date.generateRandomDate(), heroImage: heroImage, content: content)
+        return story
+    }
+    
+    static func createImageContent() -> StoryRepresentable {
+        let newsImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
+        return newsImage
+    }
+    
+    static func createParagraphContent() -> StoryRepresentable {
+        return NewsParagraph(text: .storyTeaserText)
+    }
+}
