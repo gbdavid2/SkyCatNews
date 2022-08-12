@@ -14,15 +14,15 @@ protocol MediaMaker {
 
 struct StoryMaker: MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
-        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText, let mediaTeaserImage = mediaItem.teaserImage, let imageText = mediaItem.accessibilityText else {
+        guard let id = mediaItem.id, let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let teaserText = mediaItem.teaserText, let mediaTeaserImage = mediaItem.teaserImage, let imageText = mediaItem.accessibilityText else {
             preconditionFailure(.invalidServerData)
         }
-        
+        let convertedID = Int(id) ?? 0
         let imageURL = mediaTeaserImage._links.url.href
         let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
         let teaserImage = NewsImage(imageURL: URL(mediaString: imageURL), accessibilityText: imageText)
         
-        let story = Story(headline: headline, updated: updated, teaserText: teaserText, teaserImage: teaserImage)
+        let story = Story(id: convertedID, headline: headline, updated: updated, teaserText: teaserText, teaserImage: teaserImage)
         return story
     }
 }
@@ -77,7 +77,7 @@ struct StoryMockedMaker: MediaMaker {
         let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
         let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
         
-        let story = Story(headline: .storyHeadline, updated: updated, teaserText: .storyTeaserText, teaserImage: teaserImage)
+        let story = Story(id: 1, headline: .storyHeadline, updated: updated, teaserText: .storyTeaserText, teaserImage: teaserImage)
         return story
     }
 }

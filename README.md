@@ -1,7 +1,7 @@
 # Sky Cat News
 
 ## iOS Version
-There was no requirement for supporting a minimum version of iOS, so I've tried to create a user experience that gets the most out of the most recent and modern Apple APIs. I've created the project with **iOS 15** as the target deployment version.
+There was no requirement for supporting a minimum version of iOS, so I've tried to create a user experience that gets the most out of the most recent and modern Apple APIs. I've created the project with **iOS 15** as the target deployment version. The App has SwiftUI at its core, but of course, if there was a requirement to provide support for iOS 12 or below, an implementation with a mix of SwiftUI (for iOS 13+) and UIKit (for iOS 12 and below) could be possible.
 
 ## Navigation
 The App features the custom navigation control `NavigationBar`. This was required so we could animate the control when the user scrolls. `GeometryReader` and `ScrollPreferenceKey` were used to detect user scrolling, and  `AnimatableFontModifier` was used to animate the title font after scrolling.

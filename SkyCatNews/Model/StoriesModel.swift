@@ -68,7 +68,6 @@ class StoriesModel: ObservableObject {
 
         }
         return media
-  
     }
 }
 

@@ -12,13 +12,27 @@ protocol NewsRepresentable {
 }
 
 struct Story: NewsRepresentable, TimeReportable {
-
+    let id: Int
     let headline: String
     var updated: Date
     let teaserText: String
     let teaserImage: NewsImage
     // let heroImage: NewsImage
     // let content: [StoryRepresentable]
+    
+    func getMediaType() -> MediaItem.MediaItemType {
+        return .story
+    }
+}
+
+struct DetailedStory: NewsRepresentable {
+    let id: Int
+    let headline: String
+    var updated: Date
+    let teaserText: String
+    let teaserImage: NewsImage
+    let heroImage: NewsImage
+    let content: [StoryRepresentable]
     
     func getMediaType() -> MediaItem.MediaItemType {
         return .story

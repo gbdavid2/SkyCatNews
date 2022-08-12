@@ -15,7 +15,6 @@ struct StoryData: Identifiable, Decodable {
     let creationDate: String
     let modifiedDate: String
     let contents: [StoryDataContent]
-
 }
 
 struct StoryDataContent: Decodable {

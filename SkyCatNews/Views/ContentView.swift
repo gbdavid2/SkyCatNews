@@ -14,6 +14,9 @@ struct ContentView: View {
     
     @ObservedObject var storiesModel = StoriesModel(networkProvider: FileProvider(filename: .sampleList))
     
+    // - FIXME: Call this instead - when server is ready
+    // @ObservedObject var storiesModel = StoriesModel(networkProvider: NetworkProvider(url: .newsListURL))
+    
     /// `namespace` is used in this parent view to control animations between displaying `FeaturedStory` and `StoryView` (an expanded version of the `FeaturedStory`
     @Namespace var namespace
     @EnvironmentObject var model: NavigationModel
@@ -54,7 +57,9 @@ struct ContentView: View {
         FeaturedStory(story: storiesModel.getFeaturedStory(), namespace: namespace)
     }
     var storyDetail: some View {
-        StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory))
+        StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
+        // - FIXME: Call this instead - when server is ready
+        // StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: NetworkProvider(url: URL.storyURL(storyID: storiesModel.getFeaturedStory().id))))
     }
     
     var content: some View {

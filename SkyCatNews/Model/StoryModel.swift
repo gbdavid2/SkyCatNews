@@ -10,13 +10,13 @@ import SwiftUI
 
 class StoryModel: ObservableObject {
     
+    var story: Story?
     var storyData: StoryData?
     var networkProvider: DecodeProviding
     
     @Published var isFetching: Bool = true
-    //@Published var story: Story = Story(
     
-    @Published var image: Image?
+    @Published var detailedStory: DetailedStory?
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider
@@ -26,11 +26,15 @@ class StoryModel: ObservableObject {
     func loadStory() async {
         isFetching = true
         storyData = await networkProvider.parseData()
-//        if let result = storyData {
-//            story = result
-//        }
+        if let result = storyData {
+           // detailedStory = loadStory(fromData: result)
+       }
         isFetching = false
     }
+    
+//    func loadStory(fromData data: StoryData) -> DetailedStory {
+//        
+//    }
     
     
     

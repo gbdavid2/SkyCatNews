@@ -17,8 +17,10 @@ struct StoryView: View {
     @State var showSection = false
     @State var appear = [false, false, false]
     
+    @ObservedObject var storyModel: StoryModel
+    
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var model: NavigationModel
+    @EnvironmentObject var navigationModel: NavigationModel
     
     var body: some View {
         ZStack {
@@ -41,8 +43,7 @@ struct StoryView: View {
             
             Button {
                 withAnimation(.closeStory) {
-                    model.showDetail = false
-                   // self.presentationMode.wrappedValue.dismiss()
+                    navigationModel.showDetail = false
                 }
             } label: {
                 Image(systemName: "xmark")
@@ -58,7 +59,7 @@ struct StoryView: View {
         }
         .zIndex(1)
         .onAppear { fadeIn() }
-        .onChange(of: model.showDetail) { show in
+        .onChange(of: navigationModel.showDetail) { show in
             fadeOut()
         }
     }
@@ -140,11 +141,11 @@ struct StoryView: View {
             
             Text(String.storyTeaserText)
             Divider()
-            Text("Advert")
+            Text("Image")
             Divider()
             Text(String.storyTeaserText)
             Divider()
-            Text("Advert")
+            Text("Image")
             Divider()
             Text(String.storyTeaserText)
 
@@ -207,7 +208,7 @@ struct StoryView: View {
             viewState = .zero
         }
         withAnimation(.closeStory.delay(0.2)) {
-            model.showDetail = false
+            navigationModel.showDetail = false
         }
     }
 }
@@ -215,7 +216,7 @@ struct StoryView: View {
 struct StoryView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        StoryView(namespace: namespace, story: .constant(StoryData.sampleStory))
+        StoryView(namespace: namespace, story: .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
             .environmentObject(NavigationModel())
     }
 }
