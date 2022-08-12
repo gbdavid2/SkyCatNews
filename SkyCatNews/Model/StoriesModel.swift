@@ -39,25 +39,19 @@ class StoriesModel: ObservableObject {
         return story
     }
     
-    func getStories() -> [Story] {
-        let mediaStories = media.filter { $0.getMediaType() == .story }
-        guard let resultMediaStores = mediaStories as? [Story] else {
-            preconditionFailure(.invalidStoriesArray)
+    func getMedia() -> [NewsRepresentable] {
+        var mediaWithDate = [(media: NewsRepresentable, updated: Date)]()
+        for item in media {
+            if let theStory = item as? Story {
+                mediaWithDate.append((theStory,theStory.updated))
+            }
+            if let theWebLink = item as? WebLink {
+                mediaWithDate.append((theWebLink, theWebLink.updated))
+            }
         }
         
-        let sortedStories = resultMediaStores.sorted() { $0.updated > $1.updated }
-        
-        return sortedStories
-    }
-    func getWebLinks() -> [WebLink] {
-        let mediaLinks = media.filter { $0.getMediaType() == .weblink }
-        guard let resultMediaLinks = mediaLinks as? [WebLink] else {
-            preconditionFailure(.invalidStoriesArray)
-        }
-        
-        let sortedLinks = resultMediaLinks.sorted() { $0.updated > $1.updated }
-        
-        return sortedLinks
+        let sortedMedia = mediaWithDate.sorted() { $0.updated > $1.updated }
+        return sortedMedia.map { $0.media }
     }
     
     func loadMedia(fromData data: [MediaItem]) -> [NewsRepresentable] {

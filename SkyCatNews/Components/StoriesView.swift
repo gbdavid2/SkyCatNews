@@ -19,15 +19,15 @@ struct StoriesView: View {
                     .frame(height: 400, alignment: .center)
             } else {
                 VStack {
-                    ForEach (Array(storiesModel.getStories().enumerated()), id: \.offset) {
-                        index, story in
+                    ForEach (Array(storiesModel.getMedia().enumerated()), id: \.offset) {
+                        index, media in
                         if index != 0 { Divider() }
-                        StoriesViewItem(story: story)
-                    }
-                    ForEach (Array(storiesModel.getWebLinks().enumerated()), id: \.offset) {
-                        index, weblink in
-                        if index != 0 { Divider() }
-                        StoriesViewItem_WebLink(webLink: weblink)
+                        if let theStory = media as? Story {
+                            StoriesViewItem(story: theStory)
+                        }
+                        if let theWebLink = media as? WebLink {
+                            StoriesViewItem_WebLink(webLink: theWebLink)
+                        }  
                     }
                 }
             }
