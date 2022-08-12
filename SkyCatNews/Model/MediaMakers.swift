@@ -81,16 +81,19 @@ struct StoryMockedMaker: MediaMaker {
 
 struct WebLinkMockedMaker: MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
-        guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate else {
-            preconditionFailure(.invalidServerData)
-        }
         
-        let updated = Date.calculateMostRecentDate(date1: creationDate, date2: modifiedDate)
         let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
-        let webURL = URL(mediaString: URL.randomImageURL_large.absoluteString)
+        let webURL = URL(mediaString: .webLinkTestURL)
         
         
-        let weblink = WebLink(headline: headline, updated: updated, url: webURL, teaserImage: teaserImage)
+        let weblink = WebLink(headline: .storyHeadline, updated: Date.generateRandomDate(), url: webURL, teaserImage: teaserImage)
+        return weblink
+    }
+}
+extension WebLinkMockedMaker {
+    static func createSampleStory() -> NewsRepresentable {
+        let maker = WebLinkMockedMaker()
+        let weblink = maker.createNewsRespresentable(fromMediaItem: MediaItem.sampleMediaItem())
         return weblink
     }
 }

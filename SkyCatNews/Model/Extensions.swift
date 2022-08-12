@@ -55,6 +55,9 @@ extension String {
     static var testPicsumAPI_Path_small = "/100/100"
     static var testPicsumAPI_Path_large = "/300/200"
     
+    // MARK: URL - Weblink test
+    static var webLinkTestURL = "https://duckduckgo.com"
+    
     // MARK: URL Components Live server
     static var skyCat_Host = "sky-cat-news.com"
     static var newsPath = "/news-list"

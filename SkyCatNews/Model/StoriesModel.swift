@@ -49,6 +49,16 @@ class StoriesModel: ObservableObject {
         
         return sortedStories
     }
+    func getWebLinks() -> [WebLink] {
+        let mediaLinks = media.filter { $0.getMediaType() == .weblink }
+        guard let resultMediaLinks = mediaLinks as? [WebLink] else {
+            preconditionFailure(.invalidStoriesArray)
+        }
+        
+        let sortedLinks = resultMediaLinks.sorted() { $0.updated > $1.updated }
+        
+        return sortedLinks
+    }
     
     func loadMedia(fromData data: [MediaItem]) -> [NewsRepresentable] {
         // empty the list of stories

@@ -18,10 +18,17 @@ struct StoriesView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 400, alignment: .center)
             } else {
-                ForEach (Array(storiesModel.getStories().enumerated()), id: \.offset) {
-                    index, story in
-                    if index != 0 { Divider() }
-                    StoriesViewItem(story: story)
+                VStack {
+                    ForEach (Array(storiesModel.getStories().enumerated()), id: \.offset) {
+                        index, story in
+                        if index != 0 { Divider() }
+                        StoriesViewItem(story: story)
+                    }
+                    ForEach (Array(storiesModel.getWebLinks().enumerated()), id: \.offset) {
+                        index, weblink in
+                        if index != 0 { Divider() }
+                        StoriesViewItem_WebLink(webLink: weblink)
+                    }
                 }
             }
             
