@@ -27,14 +27,15 @@ class StoryModel: ObservableObject {
         isFetching = true
         storyData = await networkProvider.parseData()
         if let result = storyData {
-           // detailedStory = loadStory(fromData: result)
+            detailedStory = loadStory(fromData: result)
        }
         isFetching = false
     }
     
-//    func loadStory(fromData data: StoryData) -> DetailedStory {
-//        
-//    }
+    func loadStory(fromData data: StoryData) -> DetailedStory {
+        let storyMaker = DetailedStoryMaker()
+        return storyMaker.createDetailedStoryRespresentable(fromStoryData: data)
+    }
     
     
     

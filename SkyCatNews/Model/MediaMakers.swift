@@ -107,3 +107,47 @@ struct AdvertMockedMaker: MediaMaker {
         return advert
     }
 }
+
+
+// MARK: Detailed Story Implementations - these don't use the MediaMaker protocol (perhaps we could make the protocol use a generic signature such as: `func createNewsRespresentabled<T: Decodable>(fromMediaItem mediaItem: T) -> NewsRepresentable` to fix this issue
+
+struct DetailedStoryMaker {
+    func createDetailedStoryRespresentable(fromStoryData storyData: StoryData) -> DetailedStory {
+
+        let convertedID = Int(storyData.id) ?? 0
+        let imageURL = storyData.heroImage.imageUrl
+        let accessibilityText = storyData.heroImage.accessibilityText
+        let updated = Date.calculateMostRecentDate(date1: storyData.creationDate, date2: storyData.modifiedDate)
+        let heroImage = NewsImage(imageURL: URL(mediaString: imageURL), accessibilityText: accessibilityText)
+        var content = [StoryRepresentable]()
+        
+        for item in storyData.contents {
+            let contentItem: StoryRepresentable
+            switch item.type {
+            case .image:
+                contentItem = createImageContent(storyContentItem: item)
+            case .paragraph:
+                contentItem = createParagraphContent(storyContentItem: item)
+            }
+            content.append(contentItem)
+        }
+        
+        let story = DetailedStory(id: convertedID, headline: storyData.headline, updated: updated, heroImage: heroImage, content: content)
+        return story
+    }
+    
+    func createImageContent(storyContentItem item: StoryDataContent) -> StoryRepresentable {
+        guard let imageURL = item.url, let accessibilityText = item.accessibilityText else {
+            preconditionFailure(.invalidServerData)
+        }
+        let newsImage = NewsImage(imageURL: URL(mediaString: imageURL), accessibilityText: accessibilityText)
+        return newsImage
+    }
+    
+    func createParagraphContent(storyContentItem item: StoryDataContent) -> StoryRepresentable {
+        guard let text = item.text else {
+            preconditionFailure(.invalidServerData)
+        }
+        return NewsParagraph(text: text)
+    }
+}
