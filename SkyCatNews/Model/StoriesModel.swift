@@ -43,7 +43,10 @@ class StoriesModel: ObservableObject {
         guard let resultMediaStores = mediaStories as? [Story] else {
             preconditionFailure(.invalidStoriesArray)
         }
-        return resultMediaStores
+        
+        let sortedStories = resultMediaStores.sorted() { $0.updated > $1.updated }
+        
+        return sortedStories
     }
     
     func loadMedia(fromData data: [MediaItem]) -> [NewsRepresentable] {
