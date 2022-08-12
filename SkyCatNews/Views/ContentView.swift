@@ -57,9 +57,9 @@ struct ContentView: View {
         FeaturedStory(story: storiesModel.getFeaturedStory(), namespace: namespace)
     }
     var storyDetail: some View {
-        StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
+        StoryView(namespace: namespace, storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
         // - FIXME: Call this instead - when server is ready
-        // StoryView(namespace: namespace, story:  .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: NetworkProvider(url: URL.storyURL(storyID: storiesModel.getFeaturedStory().id))))
+        // StoryView(namespace: namespace, storyModel: StoryModel(networkProvider: NetworkProvider(url: URL.storyURL(storyID: storiesModel.getFeaturedStory().id))))
     }
     
     var content: some View {
@@ -93,7 +93,7 @@ struct ContentView: View {
         .padding(.top, 60)
         .coordinateSpace(name: "scroll")
         .overlay(
-            NavigationBar(title: $storiesModel.title, contentHasScrolled: $contentHasScrolled)
+            NavigationBar(contentHasScrolled: $contentHasScrolled)
                 .accessibilityAddTraits(.isHeader)
         )
     }

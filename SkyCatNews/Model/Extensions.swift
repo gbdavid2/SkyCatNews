@@ -9,6 +9,9 @@ import SwiftUI
 
 extension String {
     
+    // MARK: App storage
+    static var title = "title"
+    
     // MARK: UI Strings
     static var skyTitle = "Sky Cat News (offline)"
     static var newsSection = "Latest"

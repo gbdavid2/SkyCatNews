@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 class StoriesModel: ObservableObject {
     
     let networkProvider: DecodeProviding
     
     @Published var isFetching: Bool = true
-    @Published var title: String = .skyTitle
-
     @Published var media = [NewsRepresentable]()
+    
+    @AppStorage(.title) var title: String = .skyTitle
     
     init(networkProvider: DecodeProviding) {
         self.networkProvider = networkProvider

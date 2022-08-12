@@ -10,7 +10,6 @@ import SwiftUI
 struct StoryView: View {
     
     var namespace: Namespace.ID
-    @Binding var story: StoryData
     var isAnimated = true
     
     @State var viewState: CGSize = .zero
@@ -151,8 +150,13 @@ struct StoryView: View {
                     if let paragraph = storyItem as? NewsParagraph {
                         Text(paragraph.text)
                     }
-                    if let theImage = storyItem as? NewsImage {
+                    if let _ = storyItem as? NewsImage {
+                        Image(systemName: "photo")
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 67))
+                            .frame(width: 200, height: 200)
                         Text("Image goes here")
+                        // FIXME: Fix code below and use instead when live server is available 
                         //NewsImageView(image: theImage)
                     }
                 
@@ -239,7 +243,7 @@ struct NewsImageView: View {
 struct StoryView_Previews: PreviewProvider {
     @Namespace static var namespace
     static var previews: some View {
-        StoryView(namespace: namespace, story: .constant(StoryData.sampleStory), storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
+        StoryView(namespace: namespace, storyModel: StoryModel(networkProvider: FileProvider(filename: .sampleStory)))
             .environmentObject(NavigationModel())
     }
 }

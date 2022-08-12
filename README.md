@@ -36,3 +36,12 @@ Error providers conform to the protocol `ErrorProviding` and are used by the `De
 Tests coverage for business logic and model data can be found in `SkyCatNewsTests`.
 Test coverage for UI behaviours and workflows can be found in `SkyCatNewsUITests`.
 I added additional test values in [Extensions.swift](/SkyCatNews/Model/Extensions.swift). These are widely used in both test projects to validate data. This file needs to have __Target Membership__ for all the projects so that it can be used by the test projects.
+
+## Final observations
+
+* Navigation back from a detailed story (`StoryView`) to the main view (`ContentView`) is currently bugged because it does not load the content again. The user will need to drag down to refresh the view and load the content again.
+* `StoryView` displays a list of story paragraphs and images. At the moment the image is not shown and this implementation is not working ( a text placeholder that says `Image goes here` is shown instead)
+* There are a total of 5 __FIXME__ locations in the App that will need changing to live server commands when the connections are ready.
+* The UI Testing project still requires a lot of work. I could use query techniques such as `.descendants(matching: .staticText).allElementsBoundByIndex` or `matching: .image` amongst other to find elements and check that accesibility features are available. It is also possible to use accesibility identifiers to find the `FeatureStory` view in the main UI and the close button in `StoryView` to create a UI Testing workflow where we can perform `foundElement.tap()` or `app.swipeDown()` to create automated interactions in the UI and validate that certain view elements are being displayed after these actions (e.g. to test that navigation is working)
+* The unit test project still needs additional testing functions to cover test of the model objects `StoriesModel` and `StoryModel` using certain conditions (e.g. with a mocked network provider, a file provider, or perhaps if we created another mocked provider that uses stored data)
+ 

@@ -10,7 +10,7 @@ import SwiftUI
 /// Custom navigation bar for SkyCatNews that allows creating a custom layout and custom behaviours and animations
 struct NavigationBar: View {
     
-    @Binding var title: String
+    @AppStorage(.title) var title = String.skyTitle
 
     /// Based on the behaviour of this variable we'll be able to add a navigation bar effect. This variable is bound to the `ContentView`'s `contentHasScrolled` behaviour.
     @Binding var contentHasScrolled: Bool
@@ -46,13 +46,13 @@ struct NavigationBar: View {
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false))
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(true))
         }
         .environmentObject(NavigationModel())
         Group {
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(false))
-            NavigationBar(title: .constant(.skyTitle), contentHasScrolled: .constant(true))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(false))
+            NavigationBar(title: .skyTitle, contentHasScrolled: .constant(true))
         }
         .environmentObject(NavigationModel())
         .preferredColorScheme(.dark)
