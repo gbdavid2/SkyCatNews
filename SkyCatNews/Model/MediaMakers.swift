@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+/// All media maker implementations need to create a `NesRepresentable` that will be used by the presentation layer
 protocol MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable
 }
@@ -26,6 +26,7 @@ struct StoryMaker: MediaMaker {
         return story
     }
 }
+
 struct WebLinkMaker: MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
         guard let headline = mediaItem.headline, let creationDate = mediaItem.creationDate, let modifiedDate = mediaItem.modifiedDate, let mediaTeaserImage = mediaItem.teaserImage, let imageText = mediaItem.accessibilityText, let weblinkUrl = mediaItem.weblinkUrl else {

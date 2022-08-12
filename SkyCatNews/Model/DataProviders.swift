@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A protocol required by all the data providers to facilitate decoding data received by the provider
 protocol DecodeProviding {
     func parseData<T: Decodable>() async -> T?
 }

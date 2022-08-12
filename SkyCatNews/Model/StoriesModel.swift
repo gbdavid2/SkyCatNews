@@ -9,7 +9,7 @@ import Foundation
 
 class StoriesModel: ObservableObject {
     
-    var networkProvider: DecodeProviding
+    let networkProvider: DecodeProviding
     
     @Published var isFetching: Bool = true
     @Published var title: String = .skyTitle

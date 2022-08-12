@@ -16,7 +16,6 @@ struct StoryView: View {
     @State var viewState: CGSize = .zero
     @State var showSection = false
     @State var appear = [false, false, false]
-    // @State var selectedSection = storySection[0]
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var model: NavigationModel
