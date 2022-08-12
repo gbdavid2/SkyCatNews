@@ -21,7 +21,7 @@ struct FeaturedStory: View {
             Color.clear
                 .frame(height: 180)
                 .background(
-                    AsyncImage(url: URL.randomImageURL_large) { image in
+                    AsyncImage(url: story.teaserImage.imageURL) { image in
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -29,6 +29,7 @@ struct FeaturedStory: View {
                     } placeholder: {
                         ProgressView()
                     }
+                    .accessibilityValue(story.teaserImage.accessibilityText)
                     .matchedGeometryEffect(id: "background_image", in: namespace)
                 )
             VStack (alignment: .leading, spacing: 8) {
@@ -38,12 +39,12 @@ struct FeaturedStory: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .matchedGeometryEffect(id: "headline", in: namespace)
                 
-                Text(String.storyTeaserText)
+                Text(story.teaserText)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(sizeCategory > .large ? 1 : 2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("8 min ago")
+                Text(story.getShortUpdateText())
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.top,5)

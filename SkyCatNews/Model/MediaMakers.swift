@@ -72,7 +72,7 @@ struct StoryMockedMaker: MediaMaker {
     func createNewsRespresentable(fromMediaItem mediaItem: MediaItem) -> NewsRepresentable {
         
         let updated = Date.generateRandomDate()
-        let teaserImage = NewsImage(imageURL: .randomImageURL_small, accessibilityText: .accessibilityText)
+        let teaserImage = NewsImage(imageURL: .randomImageURL_large, accessibilityText: .accessibilityText)
         
         let story = Story(id: 1, headline: .storyHeadline, updated: updated, teaserText: .storyTeaserText, teaserImage: teaserImage)
         return story
