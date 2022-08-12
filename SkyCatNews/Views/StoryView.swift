@@ -62,6 +62,9 @@ struct StoryView: View {
         .onChange(of: navigationModel.showDetail) { show in
             fadeOut()
         }
+        .task {
+            await storyModel.loadStory()
+        }
     }
     
     var cover: some View {

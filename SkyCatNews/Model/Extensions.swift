@@ -202,6 +202,32 @@ extension Date {
             return resultConvertedDate1
         }
     }
+    
+    /// Generates a random date between minutes or hours before the current date
+    static func generateRandomDate() -> Date {
+        
+        let randomComponent = Int.random(in: 1..<3)
+        
+        let randomMinute = Double(Int.random(in: 1..<58))
+        let randomMinuteInterval = -(60 * randomMinute)
+        
+        let randomHour = Double(Int.random(in: 1..<23))
+        let randomHourInterval = -(60*60*randomHour)
+        
+        let resultDate: Date
+        
+        switch randomComponent {
+        case 1:
+            resultDate = Date().addingTimeInterval(randomMinuteInterval)
+        case 2:
+            resultDate = Date().addingTimeInterval(randomHourInterval)
+        default:
+            resultDate = Date().addingTimeInterval(randomMinuteInterval)
+        }
+        
+        return resultDate
+
+    }
 }
 
 extension Calendar {
